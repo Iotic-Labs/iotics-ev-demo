@@ -9,6 +9,15 @@ Users of the system want to search for operational charging stations of the type
 
 Operational status is updated every hour and available as charging station or connection metadata or feed. Forecast at 1 or 2 h is available as as a feed on the connection digital twin.
 
+## Build and run
+
+`make setup` to initialise the python env and download dependencies
+`make gen` to generate gRPC binding code
+
+`make CMD=src/<app> <target>` runs `<app>` agent on the space defined in the `<target>` Makefile target.
+
+For example: `make CMD=src/twin_manager.py run-demo`
+
 ## Purpose
 
 The purpose of this demo is to showcase some of the IOTICS concepts and how to implement an application that leverages IOTICS unique value.
