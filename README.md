@@ -48,7 +48,6 @@ The demo code is made of
 - an "ai algorithm" developed by an external operator. This represents the use case where a third party company re-uses data in IOTICS to provide added value services. In this case, an AI algo that works out occupancy of the charging stations.
 - a "follower" app that stores data in an elasticsearch datastore for further analytics via kibana.
 
-
 ### The symmetry between producer and consumer
 
 Symmetry between producer and consumer is implemented in IOTICS. This is shown by having the subscriber app representing itself as a twin.
