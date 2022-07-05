@@ -178,6 +178,8 @@ def find_bind_store(follower_twin_id, es, api, rdfType=None, location=None):
                                                            timeout=3)
 
     subscribed_feeds = []
+    i = 0
+    max_feeds = 0
     for result in api.search_api.process_results_stream(result_stream):
         host_id = None if result.payload.remoteHostId.value == '' else result.payload.remoteHostId.value
         # logger.debug(f"result from host: {id}")
@@ -188,12 +190,11 @@ def find_bind_store(follower_twin_id, es, api, rdfType=None, location=None):
             store_twin(es, twin)
             if feeds_len > 0:
                 logger.info(f'found < {feeds_len} > feeds in {twin.id.value}')
-                i = 0
+                max_feeds = max_feeds + feeds_len
                 for fd in twin.feeds:
                     i = i + 1
                     feed = fd.feed
                     subscribed_feeds.append({
-                        'max_feeds': feeds_len,
                         'feed_n': i,
                         'follower': follower_twin_id,
                         'twin_id': feed.twinId.value,
@@ -206,7 +207,7 @@ def find_bind_store(follower_twin_id, es, api, rdfType=None, location=None):
     try:
         for sub_feed in subscribed_feeds:
             logger.info(
-                f"subscription {sub_feed['feed_n']}/{sub_feed['max_feeds']}: {sub_feed['twin_id']}/{sub_feed['feed_id']}")
+                f"subscription {sub_feed['feed_n']}/{max_feeds}: {sub_feed['twin_id']}/{sub_feed['feed_id']}")
             twin = sub_feed['twin']
             s_future = api.interest_api.fetch_interest_callback(sub_feed['follower'],
                                                                 twin_id=sub_feed['twin_id'],
@@ -215,7 +216,7 @@ def find_bind_store(follower_twin_id, es, api, rdfType=None, location=None):
                                                                 # need to force capturing of twin object or else the closure
                                                                 # won't capture the current value
                                                                 callback=lambda message, tt=twin: store_feed(es, tt, message))
-            time.sleep(1)
+            time.sleep(0.05)
             stops.append(s_future)
     except KeyboardInterrupt:
         pass

@@ -301,11 +301,16 @@ class InterestApi:
                 if err.code() == grpc.StatusCode.UNAUTHENTICATED:  # pylint: disable=no-member
                     logger.info("JWT timed out, retrying")
                     continue
+                elif err.code() == grpc.StatusCode.NOT_FOUND:  # pylint: disable=no-member
+                    logger.info(f'NOT FOUND: {twin_id}/{feed_id}')
+                    break
             # except grpc.RpcError as err: #TODO terminated error condition
             #     if err.code() == grpc.StatusCode.????:  # pylint: disable=no-member
             #         logger.info("JWT timed out, retrying")
             #         continue
-                logger.error(f'rpc error fetch_interest_iter of {twin_id}/{feed_id}: {err}')
+                else:
+                    logger.error(f'rpc error fetch_interest_iter of {twin_id}/{feed_id}: {err}')
+                    break
 
     def fetch_interest_callback(self,
                                 follower_twin_id: str,
@@ -418,14 +423,15 @@ class SearchApi:
                 if err.code() == grpc.StatusCode.DEADLINE_EXCEEDED:  # pylint: disable=no-member
                     logger.info("Application timeout reached. Stopped the search subscription (receive_search_responses)")
                     break
-                if err.code() == grpc.StatusCode.UNAUTHENTICATED:  # pylint: disable=no-member
+                elif err.code() == grpc.StatusCode.UNAUTHENTICATED:  # pylint: disable=no-member
                     logger.info("JWT timed out, retrying")
                     self.__timeout -= (int(time.time()) - time_start)  # remove the elapsed time from the timeout
                     if self.__timeout <= 0:
                         break
                     continue
-                # the callback may raise too
-                logger.error(f'rpc error receive_search_responses: {err}')
+                else:
+                    # the callback may raise too
+                    logger.error(f'rpc error receive_search_responses: {err}')
         return "Done"
 
     def dispatch_search_request_async(self,
