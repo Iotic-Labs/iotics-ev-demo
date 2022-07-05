@@ -19,19 +19,6 @@ import os
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-PREFIXES = {
-    'https://data.iotics.com/app#': "ioticsApp_",
-    'http://data.iotics.com/public#': "ioticsPub_",
-    'http://demo.iotics.com/ont/ev/': "ioticsOntEv_",
-    'http://demo.iotics.com/ont/demo/': "ioticsOntDemo_",
-    'http://data.iotics.com/iotics/': 'iotics_',
-    'http://schema.org/': "schemaOrg#",
-    'http://www.productontology.org/doc/': "pont_",
-    'http://www.w3.org/1999/02/22-rdf-syntax-ns#': "rdf_",
-    'http://www.w3.org/2000/01/rdf-schema#': "rdfs_",
-    'http://www.w3id.org/urban-iot/electric#': "urbanIot_",
-}
-
 ES_INDEX_MAPPING = {
     "mappings": {
         "properties": {
@@ -48,10 +35,6 @@ logger = logging.getLogger("evdemo")
 
 
 def map_key(key):
-    for k in PREFIXES:
-        nk = key.replace(k, PREFIXES[k])
-        if nk != key:
-            return nk
     return key
 
 
@@ -59,14 +42,19 @@ def rand_part(didId):
     return didId[14:].lower()
 
 
-def find_index_id(prefix, twin):
+def index_for(twin):
     # find the model ID or if not avail return a generic index name for all twins of unknown structure
     try:
         p1 = rand_part(next(p for p in twin.properties if p.key == "https://data.iotics.com/app#model").uriValue.value)
     except:
         # return twin.id.value
         p1 = "unk"
-    return f'{prefix}-{p1}-{datetime.now().strftime("%y%m%d")}'
+    return p1
+
+
+def make_index_name(*args):
+    i = '-'.join(args)
+    return f'{i}-{datetime.now().strftime("%y%m%d")}'
 
 
 def to_value(p):
@@ -88,12 +76,12 @@ def find_label(twin):
     return to_value(next(p for p in twin.properties if p.key == "http://www.w3.org/2000/01/rdf-schema#label"))
 
 
-def create_index(es: Elasticsearch, name):
+def create_index(es: Elasticsearch, index_name):
     try:
-        es.indices.get(index=name)
+        es.indices.get(index=index_name)
     except NotFoundError:
         try:
-            resp = es.indices.create(index=name, body=ES_INDEX_MAPPING)
+            resp = es.indices.create(index=index_name, body=ES_INDEX_MAPPING)
             logging.debug(resp)
         except:
             logging.error(f'could not create feed {traceback.format_exc()}')
@@ -119,7 +107,7 @@ def feed_doc(twin, feed):
 def store_feed(es, twin, sharedData):
     interest = sharedData.payload.interest
     msg_feed = interest.followedFeed.feed
-    index = f'{find_index_id("feed", twin)}-{msg_feed.id.value}'
+    index = make_index_name("feed", index_for(twin), msg_feed.id.value)
     try:
         resp = es.index(index=index, id=uuid.uuid1(), document=feed_doc(twin, sharedData))
         logging.debug(resp['result'])
@@ -137,20 +125,30 @@ def twin_doc(twin):
     }
     for p in twin.properties:
         nk = map_key(p.key)
-        doc[nk] = to_value(p)
+        v = to_value(p)
+        if nk in doc:
+            what = doc[nk]
+            if isinstance(what, list):
+                what.append(v)
+                doc[nk] = what
+            else:
+                doc[nk] = [what, v]
+        else:
+            doc[nk] = v
     return doc
 
 
 def store_twin(es, twin):
     # sort properties by name then hash content for ID - then add timestamp
+    twin_index = index_for(twin)
     try:
-        index = find_index_id("twin", twin)
+        index = make_index_name("twin", twin_index)
         create_index(es, index)
         resp = es.index(index=index, id=rand_part(twin.id.value), document=twin_doc(twin))
 
         for feedObj in twin.feeds:
             feed = feedObj.feed
-            index = f'{find_index_id("feed", twin)}-{feed.id.value}'
+            index = make_index_name("feed", twin_index, feed.id.value)
             create_index(es, index)
 
         logging.debug(resp['result'])
@@ -269,3 +267,13 @@ if __name__ == '__main__':
                                     follower_twin_id=follower_twin_id,
                                     es=es,
                                     api=api))
+
+    # executor.submit(find_bind_store(rdfType=f'{ON_EL}#ChargingStation',
+    #                                 follower_twin_id=follower_twin_id,
+    #                                 es=es,
+    #                                 api=api))
+    # # ---
+    # executor.submit(find_bind_store(rdfType=f'{ON_EL}#Connector',
+    #                                 follower_twin_id=follower_twin_id,
+    #                                 es=es,
+    #                                 api=api))
