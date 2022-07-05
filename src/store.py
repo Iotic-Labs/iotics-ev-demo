@@ -227,7 +227,7 @@ if __name__ == '__main__':
                          agent_seed=conf.agent_seed(),
                          agent_key_name=conf.agent_key_name,
                          agent_name=conf.agent_name,
-                         jwt_duration=20)
+                         jwt_duration=conf.jwt_token_expiry)
 
     api = ApiHelper(id_helper)
 
@@ -241,17 +241,17 @@ if __name__ == '__main__':
     executor = ThreadPoolExecutor(os.cpu_count() * 4)
 
     executor.submit(find_bind_store(rdfType=f'{ON_EL}#ChargingStation',
-                    follower_twin_id=follower_twin_id,
-                    es=es,
-                    api=api))
+                                    follower_twin_id=follower_twin_id,
+                                    es=es,
+                                    api=api))
     # ---
     executor.submit(find_bind_store(rdfType=f'{ON_EL}#Connector',
-                    follower_twin_id=follower_twin_id,
-                    es=es,
-                    api=api))
+                                    follower_twin_id=follower_twin_id,
+                                    es=es,
+                                    api=api))
     # ---
     # for this program to find the forecast twins you'll need to run on demo2
     executor.submit(find_bind_store(rdfType="http://www.productontology.org/doc/Predictive_analytics",
-                    follower_twin_id=follower_twin_id,
-                    es=es,
-                    api=api))
+                                    follower_twin_id=follower_twin_id,
+                                    es=es,
+                                    api=api))

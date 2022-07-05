@@ -15,13 +15,13 @@ class IdHelper():
 
     def __init__(self,
                  spacename: str,
+                 jwt_duration: int,
                  user_seed: str = None,
                  user_key_name: str = None,
                  user_name: str = None,
                  agent_seed: str = None,
                  agent_key_name: str = None,
-                 agent_name: str = None,
-                 jwt_duration: int = 30) -> None:
+                 agent_name: str = None) -> None:
         super().__init__()
         self.__user_seed = user_seed
         self.__user_key_name = user_key_name

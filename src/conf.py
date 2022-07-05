@@ -1,9 +1,8 @@
-import sys
+from os.path import expanduser
 import os
+import sys
 import getopt
 import requests
-from os.path import expanduser
-from pprint import pprint as pp
 
 import urllib3
 
@@ -45,7 +44,7 @@ def usage(m):
 
 class Conf:
     def __init__(self, args):
-        self.agent_seed_file = os.getenv("AGENT_SEED_FILE", ".tutorial-ev-chargers.seed")
+        self.agent_seed_file = os.getenv("AGENT_SEED_FILE", "~/.config/.tutorial-ev-chargers.seed")
         self.user_seed_file = os.getenv("USER_SEED_FILE", "~/.iotics-user-seed")
         self.api_endpoint = os.getenv("IOTICS_HOST_PORT")
         self.resolver = None
@@ -59,7 +58,7 @@ class Conf:
 
         # auth token have an expiry for security reasons. The longer the higher the chance
         # they can get stolen. 60s is a fair amount by default
-        self.jwt_token_expiry = os.getenv("JWT_EXPIRE_SEC", 300)
+        self.jwt_token_expiry = os.getenv("JWT_EXPIRE_SEC", 900)
         # how often to poll the upstream API for changes
         self.ev_api_poll_interval = os.getenv("EV_API_POLL_INTERVAL_SEC", 60)
         # how often to publish updates for feeds

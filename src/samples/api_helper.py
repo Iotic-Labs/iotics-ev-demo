@@ -305,7 +305,7 @@ class InterestApi:
             #     if err.code() == grpc.StatusCode.????:  # pylint: disable=no-member
             #         logger.info("JWT timed out, retrying")
             #         continue
-                logger.error(err)
+                logger.error(f'rpc error fetch_interest_iter of {twin_id}/{feed_id}: {err}')
 
     def fetch_interest_callback(self,
                                 follower_twin_id: str,
@@ -416,7 +416,7 @@ class SearchApi:
                         callback(resp)
             except grpc.RpcError as err:
                 if err.code() == grpc.StatusCode.DEADLINE_EXCEEDED:  # pylint: disable=no-member
-                    logger.info("Application timeout reached. Stopped the search subscription")
+                    logger.info("Application timeout reached. Stopped the search subscription (receive_search_responses)")
                     break
                 if err.code() == grpc.StatusCode.UNAUTHENTICATED:  # pylint: disable=no-member
                     logger.info("JWT timed out, retrying")
@@ -425,7 +425,7 @@ class SearchApi:
                         break
                     continue
                 # the callback may raise too
-                logger.error(err)
+                logger.error(f'rpc error receive_search_responses: {err}')
         return "Done"
 
     def dispatch_search_request_async(self,
@@ -481,7 +481,8 @@ class SearchApi:
                     yield resp
             except grpc.RpcError as err:
                 if err.code() == grpc.StatusCode.DEADLINE_EXCEEDED:  # pylint: disable=no-member
-                    logger.info("Application timeout reached. Stopped the search subscription")
+                    logger.info(
+                        f'Application timeout reached. Stopped the search subscription (process_results_stream) {err}')
                     break
                 if err.code() == grpc.StatusCode.UNAUTHENTICATED:  # pylint: disable=no-member
                     logger.info("JWT timed out, retrying")
@@ -493,4 +494,4 @@ class SearchApi:
                         client_app_id=self.__api_helper.id_helper.agent_registered_id.did)
                     stream = search_stub.ReceiveAllSearchResponses(sub_headers, timeout=self.__timeout)
                     continue
-                logger.error(err)
+                logger.error(f'rpc error process_results_stream: {err}')

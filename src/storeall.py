@@ -14,6 +14,7 @@ from elasticsearch import Elasticsearch, NotFoundError
 from datetime import datetime, timezone
 import uuid
 import json
+import time
 import os
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -176,28 +177,46 @@ def find_bind_store(follower_twin_id, es, api, rdfType=None, location=None):
                                                            scope=Scope.GLOBAL,
                                                            timeout=3)
 
-    try:
-        stops = []
-        for result in api.search_api.process_results_stream(result_stream):
-            host_id = None if result.payload.remoteHostId.value == '' else result.payload.remoteHostId.value
-            # logger.debug(f"result from host: {id}")
-            twins = result.payload.twins
-            logger.info(f'found {len(result.payload.twins)} twins')
-            for twin in twins:
-                feeds_len = len(twin.feeds)
-                store_twin(es, twin)
-                if feeds_len > 0:
-                    logger.info(f'subscribing to {twin.id.value}/{feeds_len} feeds')
-                    for fd in twin.feeds:
-                        feed = fd.feed
-                        logger.info(f"subscribing to {feed.twinId.value}/{feed.id.value}")
-                        stops.append(api.interest_api.fetch_interest_callback(follower_twin_id,
-                                                                              twin_id=feed.twinId.value, remote_host_id=host_id,
-                                                                              feed_id=feed.id.value,
-                                                                              # need to force capturing of twin object or else the closure
-                                                                              # won't capture the current value
-                                                                              callback=lambda message, tt=twin: store_feed(es, tt, message)))
+    subscribed_feeds = []
+    for result in api.search_api.process_results_stream(result_stream):
+        host_id = None if result.payload.remoteHostId.value == '' else result.payload.remoteHostId.value
+        # logger.debug(f"result from host: {id}")
+        twins = result.payload.twins
+        logger.info(f'found < {len(result.payload.twins)} > twins in host {host_id}')
+        for twin in twins:
+            feeds_len = len(twin.feeds)
+            store_twin(es, twin)
+            if feeds_len > 0:
+                logger.info(f'found < {feeds_len} > feeds in {twin.id.value}')
+                i = 0
+                for fd in twin.feeds:
+                    i = i + 1
+                    feed = fd.feed
+                    subscribed_feeds.append({
+                        'max_feeds': feeds_len,
+                        'feed_n': i,
+                        'follower': follower_twin_id,
+                        'twin_id': feed.twinId.value,
+                        'twin': twin,
+                        'feed_id': feed.id.value,
+                        'remote_host_id': host_id,
+                    })
 
+    stops = []
+    try:
+        for sub_feed in subscribed_feeds:
+            logger.info(
+                f"subscription {sub_feed['feed_n']}/{sub_feed['max_feeds']}: {sub_feed['twin_id']}/{sub_feed['feed_id']}")
+            twin = sub_feed['twin']
+            s_future = api.interest_api.fetch_interest_callback(sub_feed['follower'],
+                                                                twin_id=sub_feed['twin_id'],
+                                                                remote_host_id=sub_feed['remote_host_id'],
+                                                                feed_id=sub_feed['feed_id'],
+                                                                # need to force capturing of twin object or else the closure
+                                                                # won't capture the current value
+                                                                callback=lambda message, tt=twin: store_feed(es, tt, message))
+            time.sleep(1)
+            stops.append(s_future)
     except KeyboardInterrupt:
         pass
     finally:
@@ -205,7 +224,7 @@ def find_bind_store(follower_twin_id, es, api, rdfType=None, location=None):
             for stop in stops:
                 stop(timeout=0.1)
         except Exception as exc:  # pylint: disable=broad-except
-            logger.error(exc)
+            logger.error(f'"titty" {exc}')
 
 
 if __name__ == '__main__':
@@ -232,7 +251,7 @@ if __name__ == '__main__':
                          agent_seed=conf.agent_seed(),
                          agent_key_name=conf.agent_key_name,
                          agent_name=conf.agent_name,
-                         jwt_duration=20)
+                         jwt_duration=conf.jwt_token_expiry)
 
     api = ApiHelper(id_helper)
 
@@ -246,6 +265,6 @@ if __name__ == '__main__':
     executor = ThreadPoolExecutor(os.cpu_count() * 4)
 
     executor.submit(find_bind_store(location=LONDON,
-                    follower_twin_id=follower_twin_id,
-                    es=es,
-                    api=api))
+                                    follower_twin_id=follower_twin_id,
+                                    es=es,
+                                    api=api))

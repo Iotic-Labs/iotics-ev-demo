@@ -141,7 +141,7 @@ if __name__ == '__main__':
                          agent_seed=my_conf.agent_seed(),
                          agent_key_name=my_conf.agent_key_name,
                          agent_name=my_conf.agent_name,
-                         jwt_duration=20)
+                         jwt_duration=my_conf.jwt_token_expiry)
 
     my_api = ApiHelper(id_helper)
 
