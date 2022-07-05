@@ -1,0 +1,12 @@
+.vscode
+.dockerignore
+
+chart/
+deps/
+venv/
+tut/
+
+**/__pycache__
+**/*.egg-info
+**/*.pyc
+**/*.so

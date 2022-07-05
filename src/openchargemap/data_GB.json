@@ -1,0 +1,1900 @@
+[
+    {
+        "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "Comments": null,
+            "DataProviderStatusType": {
+                "IsProviderEnabled": true,
+                "ID": 1,
+                "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+            "DateLastImported": null,
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+        },
+        "OperatorInfo": {
+            "WebsiteURL": "http://www.teslamotors.com",
+            "Comments": null,
+            "PhonePrimaryContact": null,
+            "PhoneSecondaryContact": null,
+            "IsPrivateIndividual": null,
+            "AddressInfo": null,
+            "BookingURL": null,
+            "ContactEmail": null,
+            "FaultReportEmail": null,
+            "IsRestrictedEdit": null,
+            "ID": 23,
+            "Title": "Tesla Motors (Worldwide)"
+        },
+        "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+        },
+        "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+        },
+        "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+        },
+        "UserComments": null,
+        "PercentageSimilarity": null,
+        "MediaItems": null,
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-13T06:43:00Z",
+        "ID": 169910,
+        "UUID": "CE3ACDAE-C677-40F4-9FA7-84CC1E819AC6",
+        "ParentChargePointID": null,
+        "DataProviderID": 1,
+        "DataProvidersReference": null,
+        "OperatorID": 23,
+        "OperatorsReference": "41790",
+        "UsageTypeID": 4,
+        "UsageCost": null,
+        "AddressInfo": {
+            "ID": 170269,
+            "Title": "The Grange Guest House",
+            "AddressLine1": "22 Watton",
+            "AddressLine2": null,
+            "Town": "Brecon",
+            "StateOrProvince": null,
+            "Postcode": "LD3 7ED",
+            "CountryID": 1,
+            "Country": {
+                "ISOCode": "GB",
+                "ContinentCode": "EU",
+                "ID": 1,
+                "Title": "United Kingdom"
+            },
+            "Latitude": 51.945524,
+            "Longitude": -3.386893,
+            "ContactTelephone1": "+44 187 462 4038",
+            "ContactTelephone2": null,
+            "ContactEmail": null,
+            "AccessComments": null,
+            "RelatedURL": null,
+            "Distance": null,
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258930,
+                "ConnectionTypeID": 30,
+                "ConnectionType": {
+                    "FormalName": null,
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 30,
+                    "Title": "Tesla (Model S/X)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 2,
+                "Level": {
+                    "Comments": "Over 2 kW, usually non-domestic socket type",
+                    "IsFastChargeCapable": false,
+                    "ID": 2,
+                    "Title": "Level 2 : Medium (Over 2kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 13.0,
+                "CurrentTypeID": 20,
+                "CurrentType": {
+                    "Description": "Alternating Current - Three Phase",
+                    "ID": 20,
+                    "Title": "AC (Three-Phase)"
+                },
+                "Quantity": 2,
+                "Comments": null
+            }
+        ],
+        "NumberOfPoints": 2,
+        "GeneralComments": "2 Tesla Connectors, up to 13kW.Available for customers. Please see front desk.",
+        "DatePlanned": null,
+        "DateLastConfirmed": null,
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-13T06:43:00Z",
+        "MetadataValues": null,
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-13T06:43:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "Comments": null,
+            "DataProviderStatusType": {
+                "IsProviderEnabled": true,
+                "ID": 1,
+                "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+            "DateLastImported": null,
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+        },
+        "OperatorInfo": {
+            "WebsiteURL": "https://www.geniepoint.co.uk/",
+            "Comments": null,
+            "PhonePrimaryContact": "+44(0)20 3598 4087",
+            "PhoneSecondaryContact": null,
+            "IsPrivateIndividual": false,
+            "AddressInfo": null,
+            "BookingURL": null,
+            "ContactEmail": "GenieSupport@chargepointservices.com",
+            "FaultReportEmail": null,
+            "IsRestrictedEdit": false,
+            "ID": 150,
+            "Title": "The GeniePoint Network ( Engie EV Solutions )"
+        },
+        "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+        },
+        "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+        },
+        "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+        },
+        "UserComments": null,
+        "PercentageSimilarity": null,
+        "MediaItems": null,
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-12T22:07:00Z",
+        "ID": 169893,
+        "UUID": "6E49E783-EBBC-4BE8-8E6C-C0AEEE9F60D6",
+        "ParentChargePointID": null,
+        "DataProviderID": 1,
+        "DataProvidersReference": null,
+        "OperatorID": 150,
+        "OperatorsReference": null,
+        "UsageTypeID": 4,
+        "UsageCost": "Rapid £1.00 fee then 30p per kWh / AC socket 50p fee then 30p per kWh",
+        "AddressInfo": {
+            "ID": 170252,
+            "Title": "Morrisons Bodmin",
+            "AddressLine1": "Priory Road",
+            "AddressLine2": null,
+            "Town": "Bodmin",
+            "StateOrProvince": "England",
+            "Postcode": "PL31 2ST",
+            "CountryID": 1,
+            "Country": {
+                "ISOCode": "GB",
+                "ContinentCode": "EU",
+                "ID": 1,
+                "Title": "United Kingdom"
+            },
+            "Latitude": 50.46830025306963,
+            "Longitude": -4.706374358026892,
+            "ContactTelephone1": "+44 20 3598 4087",
+            "ContactTelephone2": null,
+            "ContactEmail": null,
+            "AccessComments": "£10.00 overstay fee after 95 mins, then £10.00 every subsequent 95 mins",
+            "RelatedURL": "https://www.cpsgenie.com/ds",
+            "Distance": null,
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258897,
+                "ConnectionTypeID": 2,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration AA",
+                    "IsDiscontinued": null,
+                    "IsObsolete": null,
+                    "ID": 2,
+                    "Title": "CHAdeMO"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258898,
+                "ConnectionTypeID": 32,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration EE",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 32,
+                    "Title": "CCS (Type 1)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258899,
+                "ConnectionTypeID": 25,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-2 Type 2",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 25,
+                    "Title": "Type 2 (Socket Only)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 2,
+                "Level": {
+                    "Comments": "Over 2 kW, usually non-domestic socket type",
+                    "IsFastChargeCapable": false,
+                    "ID": 2,
+                    "Title": "Level 2 : Medium (Over 2kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 22.0,
+                "CurrentTypeID": 20,
+                "CurrentType": {
+                    "Description": "Alternating Current - Three Phase",
+                    "ID": 20,
+                    "Title": "AC (Three-Phase)"
+                },
+                "Quantity": 1,
+                "Comments": null
+            }
+        ],
+        "NumberOfPoints": 1,
+        "GeneralComments": "Rapid £1.00 fee then 30p per kWh / AC socket 50p fee then 30p per kWh",
+        "DatePlanned": null,
+        "DateLastConfirmed": null,
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-12T22:07:00Z",
+        "MetadataValues": null,
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-12T22:07:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "Comments": null,
+            "DataProviderStatusType": {
+                "IsProviderEnabled": true,
+                "ID": 1,
+                "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+            "DateLastImported": null,
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+        },
+        "OperatorInfo": {
+            "WebsiteURL": "https://www.geniepoint.co.uk/",
+            "Comments": null,
+            "PhonePrimaryContact": "+44(0)20 3598 4087",
+            "PhoneSecondaryContact": null,
+            "IsPrivateIndividual": false,
+            "AddressInfo": null,
+            "BookingURL": null,
+            "ContactEmail": "GenieSupport@chargepointservices.com",
+            "FaultReportEmail": null,
+            "IsRestrictedEdit": false,
+            "ID": 150,
+            "Title": "The GeniePoint Network ( Engie EV Solutions )"
+        },
+        "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+        },
+        "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+        },
+        "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+        },
+        "UserComments": null,
+        "PercentageSimilarity": null,
+        "MediaItems": null,
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-12T22:02:00Z",
+        "ID": 169892,
+        "UUID": "544DC413-AA81-49EB-AF2C-FEDC0BB1A6E0",
+        "ParentChargePointID": null,
+        "DataProviderID": 1,
+        "DataProvidersReference": null,
+        "OperatorID": 150,
+        "OperatorsReference": null,
+        "UsageTypeID": 4,
+        "UsageCost": "Rapid £1.00 fee then 30p per kWh / AC socket 50p fee then 30p per kWh",
+        "AddressInfo": {
+            "ID": 170251,
+            "Title": "Morrisons Middlesbrough",
+            "AddressLine1": "The Berwick Hills Centre",
+            "AddressLine2": "Ormesby Rd",
+            "Town": "Middlesbrough",
+            "StateOrProvince": "England",
+            "Postcode": "TS3 7PB",
+            "CountryID": 1,
+            "Country": {
+                "ISOCode": "GB",
+                "ContinentCode": "EU",
+                "ID": 1,
+                "Title": "United Kingdom"
+            },
+            "Latitude": 54.55959795083811,
+            "Longitude": -1.202846608519394,
+            "ContactTelephone1": "44 20 3598 4087",
+            "ContactTelephone2": null,
+            "ContactEmail": null,
+            "AccessComments": "£10.00 overstay fee after 95 mins, then £10.00 every subsequent 95 mins",
+            "RelatedURL": "https://www.cpsgenie.com/ds",
+            "Distance": null,
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258894,
+                "ConnectionTypeID": 2,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration AA",
+                    "IsDiscontinued": null,
+                    "IsObsolete": null,
+                    "ID": 2,
+                    "Title": "CHAdeMO"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258895,
+                "ConnectionTypeID": 32,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration EE",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 32,
+                    "Title": "CCS (Type 1)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258896,
+                "ConnectionTypeID": 25,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-2 Type 2",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 25,
+                    "Title": "Type 2 (Socket Only)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 2,
+                "Level": {
+                    "Comments": "Over 2 kW, usually non-domestic socket type",
+                    "IsFastChargeCapable": false,
+                    "ID": 2,
+                    "Title": "Level 2 : Medium (Over 2kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 22.0,
+                "CurrentTypeID": 20,
+                "CurrentType": {
+                    "Description": "Alternating Current - Three Phase",
+                    "ID": 20,
+                    "Title": "AC (Three-Phase)"
+                },
+                "Quantity": 1,
+                "Comments": null
+            }
+        ],
+        "NumberOfPoints": 1,
+        "GeneralComments": "Rapid £1.00 fee then 30p per kWh / AC socket 50p fee then 30p per kWh",
+        "DatePlanned": null,
+        "DateLastConfirmed": null,
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-12T22:02:00Z",
+        "MetadataValues": null,
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-12T22:02:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "Comments": null,
+            "DataProviderStatusType": {
+                "IsProviderEnabled": true,
+                "ID": 1,
+                "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+            "DateLastImported": null,
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+        },
+        "OperatorInfo": {
+            "WebsiteURL": "https://www.geniepoint.co.uk/",
+            "Comments": null,
+            "PhonePrimaryContact": "+44(0)20 3598 4087",
+            "PhoneSecondaryContact": null,
+            "IsPrivateIndividual": false,
+            "AddressInfo": null,
+            "BookingURL": null,
+            "ContactEmail": "GenieSupport@chargepointservices.com",
+            "FaultReportEmail": null,
+            "IsRestrictedEdit": false,
+            "ID": 150,
+            "Title": "The GeniePoint Network ( Engie EV Solutions )"
+        },
+        "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+        },
+        "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+        },
+        "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+        },
+        "UserComments": null,
+        "PercentageSimilarity": null,
+        "MediaItems": null,
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-12T21:57:00Z",
+        "ID": 169891,
+        "UUID": "823EB2A3-E1B4-4287-9955-07AFD777140A",
+        "ParentChargePointID": null,
+        "DataProviderID": 1,
+        "DataProvidersReference": null,
+        "OperatorID": 150,
+        "OperatorsReference": null,
+        "UsageTypeID": 4,
+        "UsageCost": "Rapid £1.00 fee then 30p per kWh / AC socket 50p fee then 30p per kWh",
+        "AddressInfo": {
+            "ID": 170250,
+            "Title": "Morrisons Hatch End",
+            "AddressLine1": "299 Uxbridge Road",
+            "AddressLine2": null,
+            "Town": "Pinner, Greater London",
+            "StateOrProvince": "England",
+            "Postcode": "HA5 4QT",
+            "CountryID": 1,
+            "Country": {
+                "ISOCode": "GB",
+                "ContinentCode": "EU",
+                "ID": 1,
+                "Title": "United Kingdom"
+            },
+            "Latitude": 51.60817274278031,
+            "Longitude": -0.36486274912977024,
+            "ContactTelephone1": "+44 20 3598 4087",
+            "ContactTelephone2": null,
+            "ContactEmail": null,
+            "AccessComments": "£10.00 overstay fee after 95 mins, then £10.00 every subsequent 95 mins",
+            "RelatedURL": "https://www.cpsgenie.com/ds",
+            "Distance": null,
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258891,
+                "ConnectionTypeID": 2,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration AA",
+                    "IsDiscontinued": null,
+                    "IsObsolete": null,
+                    "ID": 2,
+                    "Title": "CHAdeMO"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258892,
+                "ConnectionTypeID": 32,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration EE",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 32,
+                    "Title": "CCS (Type 1)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258893,
+                "ConnectionTypeID": 25,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-2 Type 2",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 25,
+                    "Title": "Type 2 (Socket Only)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 2,
+                "Level": {
+                    "Comments": "Over 2 kW, usually non-domestic socket type",
+                    "IsFastChargeCapable": false,
+                    "ID": 2,
+                    "Title": "Level 2 : Medium (Over 2kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 22.0,
+                "CurrentTypeID": 20,
+                "CurrentType": {
+                    "Description": "Alternating Current - Three Phase",
+                    "ID": 20,
+                    "Title": "AC (Three-Phase)"
+                },
+                "Quantity": 1,
+                "Comments": null
+            }
+        ],
+        "NumberOfPoints": 1,
+        "GeneralComments": null,
+        "DatePlanned": null,
+        "DateLastConfirmed": null,
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-12T21:57:00Z",
+        "MetadataValues": null,
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-12T21:57:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "Comments": null,
+            "DataProviderStatusType": {
+                "IsProviderEnabled": true,
+                "ID": 1,
+                "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+            "DateLastImported": null,
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+        },
+        "OperatorInfo": {
+            "WebsiteURL": "http://www.pod-point.com/",
+            "Comments": "Part of Groupe EDF",
+            "PhonePrimaryContact": "020 7247 4114",
+            "PhoneSecondaryContact": null,
+            "IsPrivateIndividual": false,
+            "AddressInfo": null,
+            "BookingURL": null,
+            "ContactEmail": "enquiries@pod-point.com",
+            "FaultReportEmail": "enquiries@pod-point.com",
+            "IsRestrictedEdit": false,
+            "ID": 3,
+            "Title": "POD Point (UK)"
+        },
+        "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+        },
+        "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+        },
+        "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+        },
+        "UserComments": null,
+        "PercentageSimilarity": null,
+        "MediaItems": null,
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-12T05:04:00Z",
+        "ID": 169875,
+        "UUID": "0DEB4B67-E6F0-4802-AB8B-3D0341CCE495",
+        "ParentChargePointID": null,
+        "DataProviderID": 1,
+        "DataProvidersReference": null,
+        "OperatorID": 3,
+        "OperatorsReference": "PG-81712",
+        "UsageTypeID": 4,
+        "UsageCost": "Free",
+        "AddressInfo": {
+            "ID": 170234,
+            "Title": "Tesco Handforth Dean",
+            "AddressLine1": "Tesco Handforth Dean",
+            "AddressLine2": null,
+            "Town": "Stockport",
+            "StateOrProvince": "England",
+            "Postcode": "SK9 3PA",
+            "CountryID": 1,
+            "Country": {
+                "ISOCode": "GB",
+                "ContinentCode": "EU",
+                "ID": 1,
+                "Title": "United Kingdom"
+            },
+            "Latitude": 53.3501577156531,
+            "Longitude": -2.20583405255024,
+            "ContactTelephone1": null,
+            "ContactTelephone2": null,
+            "ContactEmail": null,
+            "AccessComments": null,
+            "RelatedURL": "http://podpoint.com",
+            "Distance": null,
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258865,
+                "ConnectionTypeID": 25,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-2 Type 2",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 25,
+                    "Title": "Type 2 (Socket Only)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 2,
+                "Level": {
+                    "Comments": "Over 2 kW, usually non-domestic socket type",
+                    "IsFastChargeCapable": false,
+                    "ID": 2,
+                    "Title": "Level 2 : Medium (Over 2kW)"
+                },
+                "Amps": 32,
+                "Voltage": 230,
+                "PowerKW": 7.0,
+                "CurrentTypeID": 10,
+                "CurrentType": {
+                    "Description": "Alternating Current - Single Phase",
+                    "ID": 10,
+                    "Title": "AC (Single-Phase)"
+                },
+                "Quantity": 2,
+                "Comments": null
+            }
+        ],
+        "NumberOfPoints": 4,
+        "GeneralComments": null,
+        "DatePlanned": null,
+        "DateLastConfirmed": null,
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-12T06:16:00Z",
+        "MetadataValues": null,
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-12T05:04:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "Comments": null,
+            "DataProviderStatusType": {
+                "IsProviderEnabled": true,
+                "ID": 1,
+                "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+            "DateLastImported": null,
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+        },
+        "OperatorInfo": {
+            "WebsiteURL": "http://www.polarnetwork.com/",
+            "Comments": "Owned by Chargemaster in the UK. Monthly post-billed membership fee gets an RFID card and charged per kWh Most points available on pre-pay via app at different per-hour tariffs. Some are also available pay-as-you-go /kWh with contactless bank card payment.",
+            "PhonePrimaryContact": "01582 400331",
+            "PhoneSecondaryContact": null,
+            "IsPrivateIndividual": false,
+            "AddressInfo": null,
+            "BookingURL": null,
+            "ContactEmail": "polarenquiries@chargemasterplc.com",
+            "FaultReportEmail": "polarenquiries@chargemasterplc.com",
+            "IsRestrictedEdit": false,
+            "ID": 32,
+            "Title": "POLAR (UK)"
+        },
+        "UsageType": {
+            "IsPayAtLocation": true,
+            "IsMembershipRequired": false,
+            "IsAccessKeyRequired": false,
+            "ID": 5,
+            "Title": "Public - Pay At Location"
+        },
+        "StatusType": {
+            "IsOperational": false,
+            "IsUserSelectable": true,
+            "ID": 150,
+            "Title": "Planned For Future Date"
+        },
+        "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+        },
+        "UserComments": null,
+        "PercentageSimilarity": null,
+        "MediaItems": null,
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-14T15:15:00Z",
+        "ID": 169946,
+        "UUID": "A39249B0-04A2-4C8E-8C2D-215A9EC77023",
+        "ParentChargePointID": null,
+        "DataProviderID": 1,
+        "DataProvidersReference": null,
+        "OperatorID": 32,
+        "OperatorsReference": null,
+        "UsageTypeID": 5,
+        "UsageCost": null,
+        "AddressInfo": {
+            "ID": 170305,
+            "Title": "BP filling station",
+            "AddressLine1": "Marlborough Road",
+            "AddressLine2": null,
+            "Town": "Swindon",
+            "StateOrProvince": "England",
+            "Postcode": "SN3 6AA",
+            "CountryID": 1,
+            "Country": {
+                "ISOCode": "GB",
+                "ContinentCode": "EU",
+                "ID": 1,
+                "Title": "United Kingdom"
+            },
+            "Latitude": 51.54518336877723,
+            "Longitude": -1.742368855412451,
+            "ContactTelephone1": null,
+            "ContactTelephone2": null,
+            "ContactEmail": null,
+            "AccessComments": null,
+            "RelatedURL": null,
+            "Distance": null,
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258981,
+                "ConnectionTypeID": 33,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration FF",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 33,
+                    "Title": "CCS (Type 2)"
+                },
+                "Reference": null,
+                "StatusTypeID": 150,
+                "StatusType": {
+                    "IsOperational": false,
+                    "IsUserSelectable": true,
+                    "ID": 150,
+                    "Title": "Planned For Future Date"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 150.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 2,
+                "Comments": null
+            },
+            {
+                "ID": 258982,
+                "ConnectionTypeID": 2,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration AA",
+                    "IsDiscontinued": null,
+                    "IsObsolete": null,
+                    "ID": 2,
+                    "Title": "CHAdeMO"
+                },
+                "Reference": null,
+                "StatusTypeID": 150,
+                "StatusType": {
+                    "IsOperational": false,
+                    "IsUserSelectable": true,
+                    "ID": 150,
+                    "Title": "Planned For Future Date"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 100.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 2,
+                "Comments": null
+            }
+        ],
+        "NumberOfPoints": 1,
+        "GeneralComments": null,
+        "DatePlanned": null,
+        "DateLastConfirmed": null,
+        "StatusTypeID": 150,
+        "DateLastStatusUpdate": "2020-11-14T15:59:00Z",
+        "MetadataValues": null,
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-14T15:15:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "Comments": null,
+            "DataProviderStatusType": {
+                "IsProviderEnabled": true,
+                "ID": 1,
+                "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+            "DateLastImported": null,
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+        },
+        "OperatorInfo": {
+            "WebsiteURL": "https://www.geniepoint.co.uk/",
+            "Comments": null,
+            "PhonePrimaryContact": "+44(0)20 3598 4087",
+            "PhoneSecondaryContact": null,
+            "IsPrivateIndividual": false,
+            "AddressInfo": null,
+            "BookingURL": null,
+            "ContactEmail": "GenieSupport@chargepointservices.com",
+            "FaultReportEmail": null,
+            "IsRestrictedEdit": false,
+            "ID": 150,
+            "Title": "The GeniePoint Network ( Engie EV Solutions )"
+        },
+        "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+        },
+        "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+        },
+        "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+        },
+        "UserComments": null,
+        "PercentageSimilarity": null,
+        "MediaItems": null,
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-12T22:20:00Z",
+        "ID": 169895,
+        "UUID": "DC3A15E3-15C1-4E8A-84C1-25B5A722A202",
+        "ParentChargePointID": null,
+        "DataProviderID": 1,
+        "DataProvidersReference": null,
+        "OperatorID": 150,
+        "OperatorsReference": null,
+        "UsageTypeID": 4,
+        "UsageCost": "Rapid £1.00 fee then 30p per kWh / AC socket 50p fee then 30p per kWh",
+        "AddressInfo": {
+            "ID": 170254,
+            "Title": "Morrisons Cannock",
+            "AddressLine1": "63 Mill Street",
+            "AddressLine2": null,
+            "Town": "Cannock",
+            "StateOrProvince": "England",
+            "Postcode": "WS11 0EE",
+            "CountryID": 1,
+            "Country": {
+                "ISOCode": "GB",
+                "ContinentCode": "EU",
+                "ID": 1,
+                "Title": "United Kingdom"
+            },
+            "Latitude": 52.68773481141673,
+            "Longitude": -2.026490558559999,
+            "ContactTelephone1": "+44 20 3598 4087",
+            "ContactTelephone2": null,
+            "ContactEmail": null,
+            "AccessComments": "£10.00 overstay fee after 95 mins, then £10.00 every subsequent 95 mins",
+            "RelatedURL": "https://www.cpsgenie.com/ds",
+            "Distance": null,
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258903,
+                "ConnectionTypeID": 2,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration AA",
+                    "IsDiscontinued": null,
+                    "IsObsolete": null,
+                    "ID": 2,
+                    "Title": "CHAdeMO"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258904,
+                "ConnectionTypeID": 32,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration EE",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 32,
+                    "Title": "CCS (Type 1)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258905,
+                "ConnectionTypeID": 25,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-2 Type 2",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 25,
+                    "Title": "Type 2 (Socket Only)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 2,
+                "Level": {
+                    "Comments": "Over 2 kW, usually non-domestic socket type",
+                    "IsFastChargeCapable": false,
+                    "ID": 2,
+                    "Title": "Level 2 : Medium (Over 2kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 22.0,
+                "CurrentTypeID": 20,
+                "CurrentType": {
+                    "Description": "Alternating Current - Three Phase",
+                    "ID": 20,
+                    "Title": "AC (Three-Phase)"
+                },
+                "Quantity": 1,
+                "Comments": null
+            }
+        ],
+        "NumberOfPoints": 1,
+        "GeneralComments": null,
+        "DatePlanned": null,
+        "DateLastConfirmed": null,
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-12T22:20:00Z",
+        "MetadataValues": null,
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-12T22:20:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "Comments": null,
+            "DataProviderStatusType": {
+                "IsProviderEnabled": true,
+                "ID": 1,
+                "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+            "DateLastImported": null,
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+        },
+        "OperatorInfo": {
+            "WebsiteURL": "https://www.geniepoint.co.uk/",
+            "Comments": null,
+            "PhonePrimaryContact": "+44(0)20 3598 4087",
+            "PhoneSecondaryContact": null,
+            "IsPrivateIndividual": false,
+            "AddressInfo": null,
+            "BookingURL": null,
+            "ContactEmail": "GenieSupport@chargepointservices.com",
+            "FaultReportEmail": null,
+            "IsRestrictedEdit": false,
+            "ID": 150,
+            "Title": "The GeniePoint Network ( Engie EV Solutions )"
+        },
+        "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+        },
+        "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+        },
+        "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+        },
+        "UserComments": null,
+        "PercentageSimilarity": null,
+        "MediaItems": null,
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-12T22:10:00Z",
+        "ID": 169894,
+        "UUID": "BBC8690F-BECC-428E-9BC1-04F366BBBBBD",
+        "ParentChargePointID": null,
+        "DataProviderID": 1,
+        "DataProvidersReference": null,
+        "OperatorID": 150,
+        "OperatorsReference": null,
+        "UsageTypeID": 4,
+        "UsageCost": "Rapid £1.00 fee then 30p per kWh / AC socket 50p fee then 30p per kWh",
+        "AddressInfo": {
+            "ID": 170253,
+            "Title": "Morrisons Basingstoke",
+            "AddressLine1": "Worting Road",
+            "AddressLine2": null,
+            "Town": "Basingstoke",
+            "StateOrProvince": "England",
+            "Postcode": "RG21 8BJ",
+            "CountryID": 1,
+            "Country": {
+                "ISOCode": "GB",
+                "ContinentCode": "EU",
+                "ID": 1,
+                "Title": "United Kingdom"
+            },
+            "Latitude": 51.26391852277632,
+            "Longitude": -1.1035326924247784,
+            "ContactTelephone1": "+44 20 3598 4087",
+            "ContactTelephone2": null,
+            "ContactEmail": null,
+            "AccessComments": "£10.00 overstay fee after 95 mins, then £10.00 every subsequent 95 mins",
+            "RelatedURL": "https://www.cpsgenie.com/ds",
+            "Distance": null,
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258900,
+                "ConnectionTypeID": 2,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration AA",
+                    "IsDiscontinued": null,
+                    "IsObsolete": null,
+                    "ID": 2,
+                    "Title": "CHAdeMO"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258901,
+                "ConnectionTypeID": 32,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration EE",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 32,
+                    "Title": "CCS (Type 1)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258902,
+                "ConnectionTypeID": 25,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-2 Type 2",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 25,
+                    "Title": "Type 2 (Socket Only)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 2,
+                "Level": {
+                    "Comments": "Over 2 kW, usually non-domestic socket type",
+                    "IsFastChargeCapable": false,
+                    "ID": 2,
+                    "Title": "Level 2 : Medium (Over 2kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 22.0,
+                "CurrentTypeID": 20,
+                "CurrentType": {
+                    "Description": "Alternating Current - Three Phase",
+                    "ID": 20,
+                    "Title": "AC (Three-Phase)"
+                },
+                "Quantity": 1,
+                "Comments": null
+            }
+        ],
+        "NumberOfPoints": 1,
+        "GeneralComments": null,
+        "DatePlanned": null,
+        "DateLastConfirmed": null,
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-12T22:10:00Z",
+        "MetadataValues": null,
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-12T22:10:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "Comments": null,
+            "DataProviderStatusType": {
+                "IsProviderEnabled": true,
+                "ID": 1,
+                "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+            "DateLastImported": null,
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+        },
+        "OperatorInfo": {
+            "WebsiteURL": "http://instavolt.co.uk/",
+            "Comments": "Pay-as-you-go, charged per kWh, contactless bank card payment.",
+            "PhonePrimaryContact": null,
+            "PhoneSecondaryContact": null,
+            "IsPrivateIndividual": false,
+            "AddressInfo": null,
+            "BookingURL": null,
+            "ContactEmail": null,
+            "FaultReportEmail": null,
+            "IsRestrictedEdit": false,
+            "ID": 3296,
+            "Title": "InstaVolt Ltd"
+        },
+        "UsageType": {
+            "IsPayAtLocation": true,
+            "IsMembershipRequired": false,
+            "IsAccessKeyRequired": false,
+            "ID": 5,
+            "Title": "Public - Pay At Location"
+        },
+        "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+        },
+        "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+        },
+        "UserComments": null,
+        "PercentageSimilarity": null,
+        "MediaItems": null,
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-14T13:30:00Z",
+        "ID": 169944,
+        "UUID": "0B60D918-19EB-4F43-9CCF-A8F025FA6B18",
+        "ParentChargePointID": null,
+        "DataProviderID": 1,
+        "DataProvidersReference": null,
+        "OperatorID": 3296,
+        "OperatorsReference": null,
+        "UsageTypeID": 5,
+        "UsageCost": "£0.35/kWh",
+        "AddressInfo": {
+            "ID": 170303,
+            "Title": "Starbucks",
+            "AddressLine1": "Cove Services",
+            "AddressLine2": "Cove Road",
+            "Town": "Fleet",
+            "StateOrProvince": "Hampshire",
+            "Postcode": "GU51 2SH",
+            "CountryID": 1,
+            "Country": {
+                "ISOCode": "GB",
+                "ContinentCode": "EU",
+                "ID": 1,
+                "Title": "United Kingdom"
+            },
+            "Latitude": 51.29342414927626,
+            "Longitude": -0.8032281684877489,
+            "ContactTelephone1": null,
+            "ContactTelephone2": null,
+            "ContactEmail": null,
+            "AccessComments": null,
+            "RelatedURL": null,
+            "Distance": null,
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258978,
+                "ConnectionTypeID": 2,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration AA",
+                    "IsDiscontinued": null,
+                    "IsObsolete": null,
+                    "ID": 2,
+                    "Title": "CHAdeMO"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 2,
+                "Comments": null
+            },
+            {
+                "ID": 258979,
+                "ConnectionTypeID": 33,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration FF",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 33,
+                    "Title": "CCS (Type 2)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": null,
+                "Voltage": null,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 2,
+                "Comments": null
+            }
+        ],
+        "NumberOfPoints": 2,
+        "GeneralComments": null,
+        "DatePlanned": null,
+        "DateLastConfirmed": null,
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-14T15:45:00Z",
+        "MetadataValues": null,
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-14T13:30:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "Comments": null,
+            "DataProviderStatusType": {
+                "IsProviderEnabled": true,
+                "ID": 1,
+                "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+            "DateLastImported": null,
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+        },
+        "OperatorInfo": {
+            "WebsiteURL": "https://ospreycharging.co.uk/ev-drivers/",
+            "Comments": "formerly known as Engenie",
+            "PhonePrimaryContact": "03300 101 757",
+            "PhoneSecondaryContact": null,
+            "IsPrivateIndividual": false,
+            "AddressInfo": null,
+            "BookingURL": null,
+            "ContactEmail": "info@engenie.co.uk",
+            "FaultReportEmail": null,
+            "IsRestrictedEdit": false,
+            "ID": 203,
+            "Title": "Osprey Charging"
+        },
+        "UsageType": {
+            "IsPayAtLocation": true,
+            "IsMembershipRequired": false,
+            "IsAccessKeyRequired": false,
+            "ID": 5,
+            "Title": "Public - Pay At Location"
+        },
+        "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+        },
+        "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+        },
+        "UserComments": null,
+        "PercentageSimilarity": null,
+        "MediaItems": null,
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-03T02:24:00Z",
+        "ID": 169716,
+        "UUID": "D3965850-D53E-4261-86F4-E2DBD93F3260",
+        "ParentChargePointID": null,
+        "DataProviderID": 1,
+        "DataProvidersReference": null,
+        "OperatorID": 203,
+        "OperatorsReference": null,
+        "UsageTypeID": 5,
+        "UsageCost": "36p per kWh Contactless",
+        "AddressInfo": {
+            "ID": 170075,
+            "Title": "The Unicorn Hotel",
+            "AddressLine1": "Trentside",
+            "AddressLine2": "Gunthorpe",
+            "Town": "Nottingham",
+            "StateOrProvince": "England",
+            "Postcode": "NG14 7FB",
+            "CountryID": 1,
+            "Country": {
+                "ISOCode": "GB",
+                "ContinentCode": "EU",
+                "ID": 1,
+                "Title": "United Kingdom"
+            },
+            "Latitude": 52.98714883920849,
+            "Longitude": -0.9846824534502048,
+            "ContactTelephone1": "03300 101 757",
+            "ContactTelephone2": null,
+            "ContactEmail": null,
+            "AccessComments": null,
+            "RelatedURL": "https://ospraycharging.co.uk/ev-drivers/",
+            "Distance": null,
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258483,
+                "ConnectionTypeID": 25,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-2 Type 2",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 25,
+                    "Title": "Type 2 (Socket Only)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 2,
+                "Level": {
+                    "Comments": "Over 2 kW, usually non-domestic socket type",
+                    "IsFastChargeCapable": false,
+                    "ID": 2,
+                    "Title": "Level 2 : Medium (Over 2kW)"
+                },
+                "Amps": 32,
+                "Voltage": 400,
+                "PowerKW": 22.0,
+                "CurrentTypeID": 20,
+                "CurrentType": {
+                    "Description": "Alternating Current - Three Phase",
+                    "ID": 20,
+                    "Title": "AC (Three-Phase)"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258484,
+                "ConnectionTypeID": 2,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration AA",
+                    "IsDiscontinued": null,
+                    "IsObsolete": null,
+                    "ID": 2,
+                    "Title": "CHAdeMO"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": 125,
+                "Voltage": 400,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258485,
+                "ConnectionTypeID": 33,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration FF",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 33,
+                    "Title": "CCS (Type 2)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": 125,
+                "Voltage": 400,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            }
+        ],
+        "NumberOfPoints": 1,
+        "GeneralComments": "Osprey 50kW rapid charger AC is a 22kw Socket",
+        "DatePlanned": null,
+        "DateLastConfirmed": null,
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-03T02:24:00Z",
+        "MetadataValues": null,
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-03T02:24:00Z",
+        "SubmissionStatusTypeID": 200
+    }
+]

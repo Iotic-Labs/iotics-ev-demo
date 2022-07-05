@@ -1,0 +1,140 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
+      integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+      integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+      integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/swagger-client"></script>
+
+    <script src="id/wasm_exec.js"></script>
+    <script src="id/id.js"></script>
+
+    <script>
+      let jwtTimer;
+
+      function setup() {
+        resolver = $("#resolver").val();
+        agentSeed = $("#agentSeed").val();
+        userSeed = $("#userSeed").val();
+        agentName = $("#agentName").val();
+        userName = $("#userName").val();
+
+        jwtTimer = setInterval(function () {
+          $("#jwtTokenBoxValue").html(jwtToken);
+        }, 1000);
+      }
+
+      function delegateFunc() {
+        delegate()
+          .then(() => {
+            $("#userDiD").val(userDiD);
+            $("#agentDiD").val(agentDiD);
+            $("#delegationResultBox").show();
+            $("#delegationResult").html(delegationResultText);
+            jwtFactory(1000);
+          })
+          .catch((error) =>
+            $("#delegationResult").html("error when delegating: " + error)
+          );
+      }
+
+      window.onload = function () {
+        setup();
+      };
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <label for="resolver">resolver</label>
+      <input
+        type="text"
+        id="resolver"
+        width="40"
+        value="https://did.dev.iotics.com"
+      />
+    </div>
+    <table>
+      <tr>
+        <td>user name:</td>
+        <td>
+          <input type="text" id="userName" value="user-0" onchange="setup()" />
+        </td>
+        <td>user seed:</td>
+        <td>
+          <input
+            type="text"
+            id="userSeed"
+            size="65"
+            value="c7613b843119990c375fb8d4296b2da8462482a40fcdabf08cd3f99d7e43a607"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>agent name:</td>
+        <td>
+          <input
+            type="text"
+            id="agentName"
+            value="agent-0"
+            onchange="setup()"
+          />
+        </td>
+        <td>agent seed:</td>
+        <td>
+          <input
+            type="text"
+            id="agentSeed"
+            size="65"
+            value="c7613b843119990c375fb8d4296b2da8462482a40fcdabf08cd3f99d7e43a607"
+          />
+        </td>
+      </tr>
+    </table>
+    <br />
+    <div>
+      <label for="delegationButton"
+        >Set up identities and auth delegation</label
+      >
+      <span id="delegationButton">
+        <input type="button" value="delegate" onclick="delegateFunc();" />
+      </span>
+    </div>
+
+    <br />
+    <div>
+      <b><label for="userDid">User DiD: </label></b>
+      <span id="userDid"></span>
+    </div>
+    <div>
+      <b><label for="agentDiD">Agent DiD: </label></b>
+      <span id="agentDid"></span>
+    </div>
+
+    <div>
+      <b><label for="delegationResult">Delegation status: </label></b>
+      <div id="delegationResult"></div>
+    </div>
+    <div>
+      <b><label for="jwtTokenBoxValue">JWT Token: </label></b>
+      <div id="jwtTokenBoxValue"></div>
+    </div>
+  </body>
+</html>

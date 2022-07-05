@@ -1,0 +1,7 @@
+#!/bin/sh
+
+CMD=$1
+NODE=${2-node01}
+
+python3 "$CMD" -e "$NODE.dev.space.iotics.com:8021" -r "https://did.stg.iotics.com"
+

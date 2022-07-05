@@ -1,0 +1,205 @@
+[
+    {
+        "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "Comments": null,
+            "DataProviderStatusType": {
+                "IsProviderEnabled": true,
+                "ID": 1,
+                "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+            "DateLastImported": null,
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+        },
+        "OperatorInfo": {
+            "Comments": "test data",
+            "ID": 203,
+            "Title": "Test Charging station"
+        },
+        "UsageType": {
+            "IsPayAtLocation": true,
+            "IsMembershipRequired": false,
+            "IsAccessKeyRequired": false,
+            "ID": 5,
+            "Title": "Public - Pay At Location"
+        },
+        "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+        },
+        "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+        },
+        "UserComments": null,
+        "PercentageSimilarity": null,
+        "MediaItems": null,
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-03T02:24:00Z",
+        "ID": 169716,
+        "UUID": "D3965850-D53E-4261-86F4-E2DBD93F3277",
+        "ParentChargePointID": null,
+        "DataProviderID": 1,
+        "DataProvidersReference": null,
+        "OperatorID": 203,
+        "OperatorsReference": null,
+        "UsageTypeID": 5,
+        "UsageCost": "$100 per kWh",
+        "AddressInfo": {
+            "ID": 170075,
+            "Title": "The House over there half way thru",
+            "AddressLine1": "Langham road",
+            "AddressLine2": "",
+            "Town": "Cambridge",
+            "StateOrProvince": "England",
+            "Postcode": "CB1 3SD",
+            "CountryID": 1,
+            "Country": {
+                "ISOCode": "GB",
+                "ContinentCode": "EU",
+                "ID": 1,
+                "Title": "United Kingdom"
+            },
+            "Latitude": 52.1913,
+            "Longitude": 0.1519,
+            "ContactTelephone1": "n/a",
+            "ContactTelephone2": null,
+            "ContactEmail": null,
+            "AccessComments": null,
+            "RelatedURL": "https://ospraycharging.co.uk/ev-drivers/",
+            "Distance": null,
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258483,
+                "ConnectionTypeID": 25,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-2 Type 2",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 25,
+                    "Title": "Type 2 (Socket Only)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 2,
+                "Level": {
+                    "Comments": "Over 2 kW, usually non-domestic socket type",
+                    "IsFastChargeCapable": false,
+                    "ID": 2,
+                    "Title": "Level 2 : Medium (Over 2kW)"
+                },
+                "Amps": 32,
+                "Voltage": 400,
+                "PowerKW": 22.0,
+                "CurrentTypeID": 20,
+                "CurrentType": {
+                    "Description": "Alternating Current - Three Phase",
+                    "ID": 20,
+                    "Title": "AC (Three-Phase)"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258484,
+                "ConnectionTypeID": 2,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration AA",
+                    "IsDiscontinued": null,
+                    "IsObsolete": null,
+                    "ID": 2,
+                    "Title": "CHAdeMO"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": 125,
+                "Voltage": 400,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            },
+            {
+                "ID": 258485,
+                "ConnectionTypeID": 33,
+                "ConnectionType": {
+                    "FormalName": "IEC 62196-3 Configuration FF",
+                    "IsDiscontinued": false,
+                    "IsObsolete": false,
+                    "ID": 33,
+                    "Title": "CCS (Type 2)"
+                },
+                "Reference": null,
+                "StatusTypeID": 50,
+                "StatusType": {
+                    "IsOperational": true,
+                    "IsUserSelectable": true,
+                    "ID": 50,
+                    "Title": "Operational"
+                },
+                "LevelID": 3,
+                "Level": {
+                    "Comments": "40KW and Higher",
+                    "IsFastChargeCapable": true,
+                    "ID": 3,
+                    "Title": "Level 3:  High (Over 40kW)"
+                },
+                "Amps": 125,
+                "Voltage": 400,
+                "PowerKW": 50.0,
+                "CurrentTypeID": 30,
+                "CurrentType": {
+                    "Description": "Direct Current",
+                    "ID": 30,
+                    "Title": "DC"
+                },
+                "Quantity": 1,
+                "Comments": null
+            }
+        ],
+        "NumberOfPoints": 1,
+        "GeneralComments": "Osprey 50kW rapid charger AC is a 22kw Socket",
+        "DatePlanned": null,
+        "DateLastConfirmed": null,
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-03T02:24:00Z",
+        "MetadataValues": null,
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-03T02:24:00Z",
+        "SubmissionStatusTypeID": 200
+    }
+]

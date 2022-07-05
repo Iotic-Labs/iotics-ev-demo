@@ -1,0 +1,201 @@
+<html>
+
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+  <meta content="utf-8" http-equiv="encoding" />
+
+  <script src="https://unpkg.com/swagger-client"></script>
+
+  <script src="id/wasm_exec.js"></script>
+
+  <script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.5/jspdf.plugin.autotable.js"></script>
+
+  <script src="https://unpkg.com/swagger-client"></script>
+
+  <link rel="stylesheet" href="./app.css" />
+
+  <!-- prism for syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+    integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+    crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-core.min.js"
+    integrity="sha512-hqRrGU7ys5tkcqxx5FIZTBb7PkO2o3mU6U5+qB9b55kgMlBUT4J2wPwQfMCxeJW1fC8pBxuatxoH//z0FInhrA=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-json.min.js"
+    integrity="sha512-IC7rV8RslChgByOdUFC6ePqOGn+OwJhnKC3S5AezM8DAiOdGhJMwgsIvBChsa2yuxxoPbH2+W/kjNUM1cc+jUQ=="
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.8.4/js/tabulator.min.js"
+    integrity="sha512-C8U6iShR8IzIZ2VY2KJN5xxpX7Z3PbK4NF3VdBtPEo/IIUQyps16/tlWKAXOPBtkRfGfB60xUpQecTGkOW0Q+Q=="
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.8.4/css/tabulator.min.css"
+    integrity="sha512-f8fLdJEE83c01ez9qBKiTrN0275L3kqkle7ZjRo0O1LVD4ujy5RKO3NMMLA4xXA4ZDzkfImx0bzxNGcgNaUEgg=="
+    crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.8.4/css/tabulator_modern.min.css"
+    integrity="sha512-1mPjF9Sk/4UYfxM6DsFaVUue6Ais9bVOC0APvtSxj/3NtH32ZSJOOsrP3QrfkLgxErOq5Haf2Fxe0DaV43/TKA=="
+    crossorigin="anonymous" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
+    integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
+    crossorigin="anonymous"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+    integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+    crossorigin="anonymous"></script>
+
+  <!-- Stomp client -->
+  <script src="stomp.js"></script>
+  <!-- <script src="https://raw.githubusercontent.com/stomp-js/stomp-websocket/master/lib/stomp.js"></script> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+    integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+    crossorigin="anonymous" />
+
+  <!-- make sure conf is imported BEFORE apps -->
+  <script src="conf.js"></script>
+  <script src="id/wasm_exec.js"></script>
+  <script src="iotics.js"></script>
+  <script src="app.js"></script>
+  <script>
+    window.onload = function () {
+      initConfig()
+      app_ui_init(conf);
+    };
+  </script>
+</head>
+
+<body>
+  <h3><div id="spaceName"></div></h3>
+  <div id="root_page">
+    <div id="connect_container">
+      <div id="login_data">
+        <div>
+          <label for="userName">User KEY Name</label>
+          <input type="text" size="12" name="userName" id="userName" placeholder="user name" />
+          <label for="userSeed">User Seed</label>
+          <input type="text" size="30" name="userSeed" id="userSeed" placeholder="user seed" />
+        </div>
+        <div>
+          <label for="agentName">Agent Key Name</label>
+          <input type="text" size="12" name="agentName" id="agentName" placeholder="agent name" />
+          <label for="agentSeed">Agent Seed</label>
+          <input type="text" size="30" name="agentName" id="agentSeed" placeholder="agent seed" />
+        </div>
+      </div>
+      <div id="hosts_div">
+        <label for="hosts_select">Choose a host</label>
+        <select id="hosts_select" onchange="fill_host_select_options()">
+        </select>
+        <input type="button" id="login_and_connect" value="connect" onclick="app_init()">
+      </div>
+    </div>
+    <div id="disconnect_container">
+      <div>
+        <b><label for="userDiD">User DiD: </label></b>
+        <span id="userDiD"></span>
+      </div>
+      <div>
+        <b><label for="agentDiD">Agent DiD: </label></b>
+        <span id="agentDiD"></span>
+      </div>
+      <input type="button" value="disconnect" onclick="app_teardown()">
+    </div>
+    <div id="main_container">
+      <div id="search_div">
+        <fieldset id="search_form">
+          <legend>Search box</legend>
+          <div>
+            <label for="scope">Global</label>
+            <input type="checkbox" name="scope" id="searchGlobalScope"></checkbox>
+            <label for="searchText">Text</label>
+            <input type="text" id="searchText" placeholder="some text" size="30">
+            <label for="searchText">Place</label>
+            <input type="place" id="searchPlace" placeholder="some place" size="38">
+            <label for="radius">Radius (km)</label>
+            <input type="text" id="searchRadius" value="25" size="10">
+          </div>
+          <div>
+            <label for="searchPropKey_1">Property #1</label>
+            <input type="text" id="searchPropKey_1" placeholder="key" size="40">
+            <input type="text" id="searchPropValue_1" placeholder="value" size="40">
+            <label for="searchPropValueUri_1">Uri?</label>
+            <input type="checkbox" name="searchIsValueUri_1" id="searchIsValueUri_1"></checkbox>
+            <input type="text" id="searchDataType_1" placeholder="dataType" size="10">
+          </div>
+          <div>
+            <label for="searchPropKey_2">Property #2</label>
+            <input type="text" id="searchPropKey_2" placeholder="key" size="40">
+            <input type="text" id="searchPropValue_2" placeholder="value" size="40">
+            <label for="searchPropValueUri_2">Uri?</label>
+            <input type="checkbox" name="searchIsValueUri_2" id="searchIsValueUri_2"></checkbox>
+            <input type="text" id="searchDataType_2" placeholder="dataType" size="10">
+          </div>
+          <div>
+            <label for="searchPropKey_3">Property #3</label>
+            <input type="text" id="searchPropKey_3" placeholder="key" size="40">
+            <input type="text" id="searchPropValue_3" placeholder="value" size="40">
+            <label for="searchPropValueUri_3">Uri?</label>
+            <input type="checkbox" name="searchIsValueUri_3" id="searchIsValueUri_3"></checkbox>
+            <input type="text" id="searchDataType_3" placeholder="dataType" size="10">
+          </div>
+          <div>
+            <input type="button" value="Search" onclick="uiSearch();"></button>
+          </div>
+        </fieldset>
+        <div>
+          <input type="button" value="clean data" onclick="clean_data()">
+        </div>
+      </div>
+
+      <div id="debug">
+      </div>
+
+      <div class="overlay is-hidden" id="overlay">
+        <div class="modal-content">
+          <span class="button-close" onclick="closeModal();"></span>
+          <div id="content"></div>
+        </div>
+      </div>
+
+      <h2>Charging stations</h2>
+      <div id="chargers">
+
+      </div>
+      <div>
+        <button id="chargers-download-xlsx">Download CSV</button>
+      </div>
+
+      <h2>Connections</h2>
+      <div id="connections">
+
+      </div>
+      <div>
+        <button id="connections-download-xlsx">Download CSV</button>
+      </div>
+
+      <h2>Predictions</h2>
+      <div id="predictions">
+
+      </div>
+      <div>
+        <button id="predictions-download-xlsx">Download CSV</button>
+      </div>
+
+      <h2>Application Twins</h2>
+      <div id="applicationTwins">
+
+      </div>
+      <div>
+        <button id="applicationTwins-download-xlsx">Download CSV</button>
+      </div>
+    </div>
+</div>
+
+</body>
+
+</html>

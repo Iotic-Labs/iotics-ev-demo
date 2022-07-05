@@ -1,0 +1,405 @@
+[
+    {
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-16T07:09:00Z",
+        "ID": 169997,
+        "UUID": "7F8059A6-E0CE-4503-9E3F-86000ABE2A56",
+        "DataProviderID": 1,
+        "OperatorID": 23,
+        "OperatorsReference": "27501",
+        "UsageTypeID": 4,
+        "AddressInfo": {
+            "ID": 170356,
+            "Title": "Cosmos Cafe",
+            "AddressLine1": "2813 Boulevard Laurier",
+            "Town": "Ville de Quebec",
+            "Postcode": "G1V 2L9",
+            "CountryID": 44,
+            "Latitude": 46.767493,
+            "Longitude": -71.287045,
+            "ContactTelephone1": "(418) 652-2001",
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 259118,
+                "ConnectionTypeID": 30,
+                "StatusTypeID": 50,
+                "LevelID": 2,
+                "PowerKW": 8.0,
+                "CurrentTypeID": 20,
+                "Quantity": 1
+            }
+        ],
+        "NumberOfPoints": 1,
+        "GeneralComments": "1 Tesla Connector, up to 8kW.Available for customers. Self park.",
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-16T07:09:00Z",
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-16T07:09:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-16T07:09:00Z",
+        "ID": 169996,
+        "UUID": "AE2C0C08-629F-40EF-91E6-A82703B27F2C",
+        "DataProviderID": 1,
+        "OperatorID": 23,
+        "OperatorsReference": "22325",
+        "UsageTypeID": 4,
+        "AddressInfo": {
+            "ID": 170355,
+            "Title": "Imperia Hotel & Suites Terrebonne",
+            "AddressLine1": "2935 Boul de la Piniere",
+            "Town": "Terrebonne",
+            "Postcode": "J6X 0A3",
+            "CountryID": 44,
+            "Latitude": 45.721094,
+            "Longitude": -73.694438,
+            "ContactTelephone1": "(450) 472-3336",
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 259117,
+                "ConnectionTypeID": 30,
+                "StatusTypeID": 50,
+                "LevelID": 2,
+                "PowerKW": 16.0,
+                "CurrentTypeID": 20,
+                "Quantity": 2
+            }
+        ],
+        "NumberOfPoints": 2,
+        "GeneralComments": "2 Tesla Connectors, up to 16kW.Available to the public. Self park.",
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-16T07:09:00Z",
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-16T07:09:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-13T06:45:00Z",
+        "ID": 169920,
+        "UUID": "E77892FA-02B9-4935-B0D9-04E39796A93B",
+        "DataProviderID": 1,
+        "OperatorID": 23,
+        "OperatorsReference": "27501",
+        "UsageTypeID": 4,
+        "AddressInfo": {
+            "ID": 170279,
+            "Title": "Cosmos Cafe",
+            "AddressLine1": "2813 Boulevard Laurier",
+            "Town": "Ville de Quebec",
+            "Postcode": "G1V 2L9",
+            "CountryID": 44,
+            "Latitude": 46.767493,
+            "Longitude": -71.287045,
+            "ContactTelephone1": "(418) 652-2001",
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258940,
+                "ConnectionTypeID": 30,
+                "StatusTypeID": 50,
+                "LevelID": 2,
+                "PowerKW": 8.0,
+                "CurrentTypeID": 20,
+                "Quantity": 1
+            }
+        ],
+        "NumberOfPoints": 1,
+        "GeneralComments": "1 Tesla Connector, up to 8kW.Available for customers. Self park.",
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-13T06:45:00Z",
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-13T06:45:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-13T06:45:00Z",
+        "ID": 169920,
+        "UUID": "E77892FA-02B9-4935-B0D9-04E39796A93B",
+        "DataProviderID": 1,
+        "OperatorID": 23,
+        "OperatorsReference": "27501",
+        "UsageTypeID": 4,
+        "AddressInfo": {
+            "ID": 170279,
+            "Title": "Cosmos Cafe",
+            "AddressLine1": "2813 Boulevard Laurier",
+            "Town": "Ville de Quebec",
+            "Postcode": "G1V 2L9",
+            "CountryID": 44,
+            "Latitude": 46.767493,
+            "Longitude": -71.287045,
+            "ContactTelephone1": "(418) 652-2001",
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258940,
+                "ConnectionTypeID": 30,
+                "StatusTypeID": 50,
+                "LevelID": 2,
+                "PowerKW": 8.0,
+                "CurrentTypeID": 20,
+                "Quantity": 1
+            }
+        ],
+        "NumberOfPoints": 1,
+        "GeneralComments": "1 Tesla Connector, up to 8kW.Available for customers. Self park.",
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-13T06:45:00Z",
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-13T06:45:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-13T06:44:00Z",
+        "ID": 169917,
+        "UUID": "E928903A-E4E7-41EC-8CC8-A50DF1E9F0D0",
+        "DataProviderID": 1,
+        "OperatorID": 23,
+        "OperatorsReference": "41113",
+        "UsageTypeID": 4,
+        "AddressInfo": {
+            "ID": 170276,
+            "Title": "City of Barrie - Collier Street Parkade",
+            "AddressLine1": "27 Collier St",
+            "Town": "Barrie",
+            "StateOrProvince": "Ontario",
+            "Postcode": "L4M 1G5",
+            "CountryID": 44,
+            "Latitude": 44.390276,
+            "Longitude": -79.689021,
+            "ContactTelephone1": "(705) 726-4242",
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258937,
+                "ConnectionTypeID": 30,
+                "StatusTypeID": 50,
+                "LevelID": 2,
+                "PowerKW": 16.0,
+                "CurrentTypeID": 20,
+                "Quantity": 16
+            }
+        ],
+        "NumberOfPoints": 16,
+        "GeneralComments": "16 Tesla Connectors, up to 16kW.Parking fees will apply. Self park.",
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-13T06:44:00Z",
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-13T06:44:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-13T06:43:00Z",
+        "ID": 169911,
+        "UUID": "D3D5E0C0-020A-4AD4-BB18-6117DDA71828",
+        "DataProviderID": 1,
+        "OperatorID": 23,
+        "OperatorsReference": "22325",
+        "UsageTypeID": 4,
+        "AddressInfo": {
+            "ID": 170270,
+            "Title": "Imperia Hotel & Suites Terrebonne",
+            "AddressLine1": "2935 Boul de la Piniere",
+            "Town": "Terrebonne",
+            "Postcode": "J6X 0A3",
+            "CountryID": 44,
+            "Latitude": 45.721094,
+            "Longitude": -73.694438,
+            "ContactTelephone1": "(450) 472-3336",
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258931,
+                "ConnectionTypeID": 30,
+                "StatusTypeID": 50,
+                "LevelID": 2,
+                "PowerKW": 16.0,
+                "CurrentTypeID": 20,
+                "Quantity": 2
+            }
+        ],
+        "NumberOfPoints": 2,
+        "GeneralComments": "2 Tesla Connectors, up to 16kW.Available to the public. Self park.",
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-13T06:43:00Z",
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-13T06:43:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-10T09:45:00Z",
+        "ID": 169790,
+        "UUID": "E43AD3F6-9BF3-4F85-ADD2-5FC4350C6F26",
+        "DataProviderID": 1,
+        "OperatorID": 23,
+        "OperatorsReference": "27501",
+        "UsageTypeID": 4,
+        "AddressInfo": {
+            "ID": 170149,
+            "Title": "Cosmos Cafe",
+            "AddressLine1": "2813 Boulevard Laurier",
+            "Town": "Ville de Quebec",
+            "Postcode": "G1V 2L9",
+            "CountryID": 44,
+            "Latitude": 46.767493,
+            "Longitude": -71.287045,
+            "ContactTelephone1": "(418) 652-2001",
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258705,
+                "ConnectionTypeID": 30,
+                "StatusTypeID": 50,
+                "LevelID": 2,
+                "PowerKW": 8.0,
+                "CurrentTypeID": 20,
+                "Quantity": 1
+            }
+        ],
+        "NumberOfPoints": 1,
+        "GeneralComments": "1 Tesla Connector, up to 8kW.Available for customers. Self park.",
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-10T09:45:00Z",
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-10T09:45:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-10T09:44:00Z",
+        "ID": 169785,
+        "UUID": "1254329F-32E9-4918-8E6D-688240916832",
+        "DataProviderID": 1,
+        "OperatorID": 23,
+        "OperatorsReference": "43642",
+        "UsageTypeID": 4,
+        "UsageCost": "$0.40/min >=60kW; $0.20/min <60kW; other tariffs for older cars",
+        "AddressInfo": {
+            "ID": 170144,
+            "Title": "Nepean, on - Robertson Road Supercharger",
+            "AddressLine1": "2135 Robertson Road",
+            "Town": "Nepean",
+            "StateOrProvince": "ON",
+            "Postcode": "K2H 5Z2",
+            "CountryID": 44,
+            "Latitude": 45.32157,
+            "Longitude": -75.835377,
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258700,
+                "ConnectionTypeID": 27,
+                "StatusTypeID": 50,
+                "LevelID": 3,
+                "PowerKW": 120.0,
+                "CurrentTypeID": 30,
+                "Quantity": 8
+            }
+        ],
+        "NumberOfPoints": 8,
+        "GeneralComments": "Charging8 superchargers, available 24/7, up to 250kW",
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-10T09:44:00Z",
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-10T09:44:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-10T09:43:00Z",
+        "ID": 169778,
+        "UUID": "F780DF2A-3AEB-4E18-9AEE-96BEDBB5BE4D",
+        "DataProviderID": 1,
+        "OperatorID": 23,
+        "OperatorsReference": "22325",
+        "UsageTypeID": 4,
+        "AddressInfo": {
+            "ID": 170137,
+            "Title": "Imperia Hotel & Suites Terrebonne",
+            "AddressLine1": "2935 Boul de la Piniere",
+            "Town": "Terrebonne",
+            "Postcode": "J6X 0A3",
+            "CountryID": 44,
+            "Latitude": 45.721094,
+            "Longitude": -73.694438,
+            "ContactTelephone1": "(450) 472-3336",
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258693,
+                "ConnectionTypeID": 30,
+                "StatusTypeID": 50,
+                "LevelID": 2,
+                "PowerKW": 16.0,
+                "CurrentTypeID": 20,
+                "Quantity": 2
+            }
+        ],
+        "NumberOfPoints": 2,
+        "GeneralComments": "2 Tesla Connectors, up to 16kW.Available to the public. Self park.",
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-10T09:43:00Z",
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-10T09:43:00Z",
+        "SubmissionStatusTypeID": 200
+    },
+    {
+        "IsRecentlyVerified": true,
+        "DateLastVerified": "2020-11-10T09:42:00Z",
+        "ID": 169774,
+        "UUID": "1C0EDEFF-0A31-4088-8921-635BFD3714F4",
+        "DataProviderID": 1,
+        "OperatorID": 23,
+        "OperatorsReference": "41113",
+        "UsageTypeID": 4,
+        "AddressInfo": {
+            "ID": 170133,
+            "Title": "City of Barrie - Collier Street Parkade",
+            "AddressLine1": "27 Collier St",
+            "Town": "Barrie",
+            "StateOrProvince": "Ontario",
+            "Postcode": "L4M 1G5",
+            "CountryID": 44,
+            "Latitude": 44.390276,
+            "Longitude": -79.689021,
+            "ContactTelephone1": "(705) 726-4242",
+            "DistanceUnit": 0
+        },
+        "Connections": [
+            {
+                "ID": 258689,
+                "ConnectionTypeID": 30,
+                "StatusTypeID": 50,
+                "LevelID": 2,
+                "PowerKW": 16.0,
+                "CurrentTypeID": 20,
+                "Quantity": 16
+            }
+        ],
+        "NumberOfPoints": 16,
+        "GeneralComments": "16 Tesla Connectors, up to 16kW.Parking fees will apply. Self park.",
+        "StatusTypeID": 50,
+        "DateLastStatusUpdate": "2020-11-10T09:42:00Z",
+        "DataQualityLevel": 1,
+        "DateCreated": "2020-11-10T09:42:00Z",
+        "SubmissionStatusTypeID": 200
+    }
+]
