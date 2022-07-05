@@ -64,7 +64,7 @@ def find_index_id(prefix, twin):
     except:
         # return twin.id.value
         p1 = "unk"
-    return f'{prefix}-{p1}'
+    return f'{prefix}-{p1}-{datetime.now().strftime("%y%m%d")}'
 
 
 def to_value(p):
