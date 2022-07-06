@@ -173,12 +173,14 @@ def find_bind_store(follower_id, es, api, rdfType=None, location=None):
         properties_filter = []  # exact match
         properties_filter.append(api.make_property_uri(f'{ON_RDF}#type', rdfType))
         payload.properties = properties_filter
+        search_meta["rdf_type"] = rdfType
     if location is not None:
         payload.location = location
+        search_meta["location"] = {"type": "Point", "coordinates": [location.location.lon, location.location.lat]}
+        search_meta["radiusKm"] = location.radiusKm
+
     payload.response_type = ResponseType.FULL
 
-    search_meta["location"] = location
-    search_meta["rdf_type"] = rdfType
 
     result_stream = api.search_api.dispatch_search_request(payload.build(),
                                                            client_ref=ApiHelper.randClientRef(),
@@ -231,7 +233,7 @@ def find_bind_store(follower_id, es, api, rdfType=None, location=None):
                                                                 # need to force capturing of twin object or else the closure
                                                                 # won't capture the current value
                                                                 callback=lambda message, tt=twin: store_feed(es, tt, message))
-            time.sleep(0.05)
+            #time.sleep(0.05)
             stops.append(s_future)
     except KeyboardInterrupt:
         pass
