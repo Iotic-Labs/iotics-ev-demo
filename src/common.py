@@ -54,10 +54,10 @@ def make_or_get_follower(api: ApiHelper) -> str:
     properties = common_properties(api, f'Agent:{api.id_helper.agent_name}')
     properties.append(api.make_property_string(f'{ON_RDFS}#label', f'Agent {api.id_helper.agent_name}'))
     properties.append(api.make_property_string(f'{ON_RDFS}#comment',
-                      f'Twin of application {api.id_helper.agent_name} {TAG}'))
+                                               f'Twin of application {api.id_helper.agent_name} {TAG}'))
     properties.append(api.make_property_string('http://schema.org/name', api.id_helper.agent_name))
     properties.append(api.make_property_uri('http://data.iotics.com/public#hostAllowList',
-                      'http://data.iotics.com/public#allHosts'))
+                                            'http://data.iotics.com/public#allHosts'))
     properties.append(api.make_property_uri(f'{ON_RDF}#type', 'http://www.productontology.org/doc/Application'))
 
     api.twin_api.replace_twin_properties(follower_did, properties)

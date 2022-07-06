@@ -91,6 +91,7 @@ def store_search_meta(meta):
     index = make_index_name("meta", "search")
     create_index(es=es, index_name=index)
     es.index(index=index, id=uuid.uuid1(), document=meta)
+    logging.info(meta)
 
 
 def feed_doc(twin, feed):
@@ -181,7 +182,6 @@ def find_bind_store(follower_id, es, api, rdfType=None, location=None):
 
     payload.response_type = ResponseType.FULL
 
-
     result_stream = api.search_api.dispatch_search_request(payload.build(),
                                                            client_ref=ApiHelper.randClientRef(),
                                                            scope=Scope.GLOBAL,
@@ -233,7 +233,7 @@ def find_bind_store(follower_id, es, api, rdfType=None, location=None):
                                                                 # need to force capturing of twin object or else the closure
                                                                 # won't capture the current value
                                                                 callback=lambda message, tt=twin: store_feed(es, tt, message))
-            #time.sleep(0.05)
+            # time.sleep(0.05)
             stops.append(s_future)
     except KeyboardInterrupt:
         pass
@@ -252,6 +252,8 @@ if __name__ == '__main__':
     sys.exit() if not conf.init_and_validate() else print("")  # pylint: disable=expression-not-assigned
     # init logger
     common.init_logger()
+    logging.getLogger('elastic_transport.transport').setLevel(level=logging.WARN)
+    logging.getLogger('root').setLevel(level=logging.WARN)
 
     elasticConfFile = open(f'{str(Path.home())}/.config/elastic.json')
     elasticConf = json.load(elasticConfFile)

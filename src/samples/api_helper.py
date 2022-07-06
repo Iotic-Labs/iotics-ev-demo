@@ -302,7 +302,8 @@ class InterestApi:
                     logger.info("fetch_interest_iter - JWT timed out, retrying")
                     continue
                 elif err.code() == grpc.StatusCode.NOT_FOUND:  # pylint: disable=no-member
-                    logger.info(f'NOT FOUND: {twin_id}/{feed_id}')
+                    logger.info(f'NOT FOUND: {remote_host_id}/{twin_id}/{feed_id}')
+
                     break
             # except grpc.RpcError as err: #TODO terminated error condition
             #     if err.code() == grpc.StatusCode.????:  # pylint: disable=no-member
