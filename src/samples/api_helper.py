@@ -299,7 +299,7 @@ class InterestApi:
                     yield resp
             except grpc.RpcError as err:
                 if err.code() == grpc.StatusCode.UNAUTHENTICATED:  # pylint: disable=no-member
-                    logger.info("JWT timed out, retrying")
+                    logger.info("fetch_interest_iter - JWT timed out, retrying")
                     continue
                 elif err.code() == grpc.StatusCode.NOT_FOUND:  # pylint: disable=no-member
                     logger.info(f'NOT FOUND: {twin_id}/{feed_id}')
@@ -424,7 +424,7 @@ class SearchApi:
                     logger.info("Application timeout reached. Stopped the search subscription (receive_search_responses)")
                     break
                 elif err.code() == grpc.StatusCode.UNAUTHENTICATED:  # pylint: disable=no-member
-                    logger.info("JWT timed out, retrying")
+                    logger.info("receive_search_responses - JWT timed out, retrying")
                     self.__timeout -= (int(time.time()) - time_start)  # remove the elapsed time from the timeout
                     if self.__timeout <= 0:
                         break
@@ -491,7 +491,7 @@ class SearchApi:
                         f'Application timeout reached. Stopped the search subscription (process_results_stream) {err}')
                     break
                 if err.code() == grpc.StatusCode.UNAUTHENTICATED:  # pylint: disable=no-member
-                    logger.info("JWT timed out, retrying")
+                    logger.info("process_results_stream - JWT timed out, retrying")
                     self.__timeout -= (int(time.time()) - time_start)  # remove the elapsed time from the timeout
                     if self.__timeout <= 0:
                         break

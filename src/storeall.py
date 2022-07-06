@@ -1,4 +1,4 @@
-from distutils.sysconfig import PREFIX
+import traceback
 import logging
 import sys
 from iotics.api.common_pb2 import Scope, GeoCircle, GeoLocation
@@ -9,7 +9,6 @@ from samples.identity_helper import IdHelper
 from samples.api_helper import ApiHelper, SearchPayloadBuilder
 from conf import Conf
 import common
-import traceback
 from elasticsearch import Elasticsearch, NotFoundError
 from datetime import datetime, timezone
 import uuid
@@ -83,8 +82,15 @@ def create_index(es: Elasticsearch, index_name):
         try:
             resp = es.indices.create(index=index_name, body=ES_INDEX_MAPPING)
             logging.debug(resp)
-        except:
+        except Exception:  # pylint: disable=broad-except
             logging.error(f'could not create feed {traceback.format_exc()}')
+
+
+def store_search_meta(meta):
+    meta["timestamp"] = datetime.now(timezone.utc).isoformat()
+    index = make_index_name("meta", "search")
+    create_index(es=es, index_name=index)
+    es.index(index=index, id=uuid.uuid1(), document=meta)
 
 
 def feed_doc(twin, feed):
@@ -111,7 +117,7 @@ def store_feed(es, twin, sharedData):
     try:
         resp = es.index(index=index, id=uuid.uuid1(), document=feed_doc(twin, sharedData))
         logging.debug(resp['result'])
-    except Exception:
+    except Exception:  # pylint: disable=broad-except
         logging.error(f'could not store feed {traceback.format_exc()}')
 
 
@@ -152,14 +158,15 @@ def store_twin(es, twin):
             create_index(es, index)
 
         logging.debug(resp['result'])
-    except Exception:
+    except Exception:  # pylint: disable=broad-except
         logging.error(f'could not store feed {traceback.format_exc()}')
 
 
-def find_bind_store(follower_twin_id, es, api, rdfType=None, location=None):
+def find_bind_store(follower_id, es, api, rdfType=None, location=None):
     logger.info(f'Searching for Twins of type {rdfType}')
 
     payload = SearchPayloadBuilder()
+    search_meta = {}
 
     properties_filter = None
     if rdfType is not None:
@@ -170,19 +177,27 @@ def find_bind_store(follower_twin_id, es, api, rdfType=None, location=None):
         payload.location = location
     payload.response_type = ResponseType.FULL
 
+    search_meta["location"] = location
+    search_meta["rdf_type"] = rdfType
+
     result_stream = api.search_api.dispatch_search_request(payload.build(),
                                                            client_ref=ApiHelper.randClientRef(),
                                                            scope=Scope.GLOBAL,
-                                                           timeout=3)
+                                                           timeout=5)
 
     subscribed_feeds = []
     i = 0
     max_feeds = 0
+
+    search_meta["total_hosts"] = 0
+    search_meta["total_twins"] = 0
     for result in api.search_api.process_results_stream(result_stream):
         host_id = None if result.payload.remoteHostId.value == '' else result.payload.remoteHostId.value
         # logger.debug(f"result from host: {id}")
         twins = result.payload.twins
         logger.info(f'found < {len(result.payload.twins)} > twins in host {host_id}')
+        search_meta["total_hosts"] = search_meta["total_hosts"] + 1
+        search_meta["total_twins"] = search_meta["total_twins"] + len(result.payload.twins)
         for twin in twins:
             feeds_len = len(twin.feeds)
             store_twin(es, twin)
@@ -194,13 +209,15 @@ def find_bind_store(follower_twin_id, es, api, rdfType=None, location=None):
                     feed = fd.feed
                     subscribed_feeds.append({
                         'feed_n': i,
-                        'follower': follower_twin_id,
+                        'follower': follower_id,
                         'twin_id': feed.twinId.value,
                         'twin': twin,
                         'feed_id': feed.id.value,
                         'remote_host_id': host_id,
                     })
 
+    search_meta["total_feeds"] = max_feeds
+    store_search_meta(meta=search_meta)
     stops = []
     try:
         for sub_feed in subscribed_feeds:
@@ -222,8 +239,8 @@ def find_bind_store(follower_twin_id, es, api, rdfType=None, location=None):
         try:
             for stop in stops:
                 stop(timeout=0.1)
-        except Exception as exc:  # pylint: disable=broad-except
-            logger.error(f'"titty" {exc}')
+        except Exception:  # pylint: disable=broad-except
+            logger.error(f'"exception handling subscription" {traceback.format_exc()}')
 
 
 if __name__ == '__main__':
@@ -264,7 +281,7 @@ if __name__ == '__main__':
     executor = ThreadPoolExecutor(os.cpu_count() * 4)
 
     executor.submit(find_bind_store(location=LONDON,
-                                    follower_twin_id=follower_twin_id,
+                                    follower_id=follower_twin_id,
                                     es=es,
                                     api=api))
 
