@@ -12,6 +12,7 @@ from iotics.api import search_pb2_grpc
 from iotics.api import twin_pb2_grpc
 from iotics.api import feed_pb2_grpc
 from iotics.api import interest_pb2_grpc
+from iotics.api import meta_pb2_grpc
 from iotics.api.common_pb2 import FeedData, GeoLocation, Headers, HostID, Property, PropertyUpdate, StringLiteral, \
     SubscriptionHeaders, Scope, TwinID, FeedID, Values, Value, Uri, Literal, Visibility
 from iotics.api.search_pb2 import SearchRequest, ResponseType
@@ -28,6 +29,14 @@ from iotics.api.feed_pb2 import DescribeFeedRequest, \
     ShareFeedDataRequest, ShareFeedDataResponse, \
     UpdateFeedRequest, UpdateFeedResponse
 
+from iotics.api.meta_pb2 import SparqlQueryRequest, SparqlQueryResponse, SparqlResultType
+
+import ssl
+from datetime import datetime, timedelta, timezone
+from pprint import pprint
+from typing import Dict
+
+
 from samples.identity_helper import IdHelper
 
 logger = logging.getLogger("evdemo")
@@ -43,6 +52,7 @@ class ApiHelper():
         self.__grpc_channel = None
         self.__last_jwt_token = None
 
+        self.__meta_api = MetaApi(self)
         self.__twin_api = TwinApi(self)
         self.__search_api = SearchApi(self)
         self.__interest_api = InterestApi(self)
@@ -113,6 +123,10 @@ class ApiHelper():
         return self.__twin_api
 
     @property
+    def meta_api(self):
+        return self.__meta_api
+
+    @property
     def search_api(self):
         return self.__search_api
 
@@ -141,11 +155,17 @@ class TwinApi:
         list_req = ListAllTwinsRequest(headers=headers)
         return twin_stub.ListAllTwins(list_req)
 
-    def describe_twin(self, did: str) -> DescribeTwinResponse:
+    def describe_twin(self, did: str, remoteHostId: str = None) -> DescribeTwinResponse:
         twin_stub = twin_pb2_grpc.TwinAPIStub(self.__api_helper.grpc_channel)
         headers = self.__api_helper.make_headers(client_app_id=self.__api_helper.id_helper.agent_registered_id.did)
+        t_id = TwinID(value=did)
+        rh_id = None
+        if remoteHostId is not None:
+            rh_id = HostID(value=remoteHostId)
         describe_req = DescribeTwinRequest(headers=headers,
-                                           args=DescribeTwinRequest.Arguments(twinId=TwinID(value=did)))
+                                           args=DescribeTwinRequest.Arguments(
+                                               twinId=t_id,
+                                               remoteHostId=rh_id))
         return twin_stub.DescribeTwin(describe_req)
 
     def delete_twin(self, did: str) -> DeleteTwinResponse:
@@ -502,3 +522,69 @@ class SearchApi:
                     stream = search_stub.ReceiveAllSearchResponses(sub_headers, timeout=self.__timeout)
                     continue
                 logger.error(f'rpc error process_results_stream: {err}')
+
+
+class MetaApi:
+
+    def __init__(self, api_helper) -> None:
+        self.__api_helper: ApiHelper = api_helper
+
+    def create_feed(self, did: str, feed_name: str) -> CreateFeedResponse:
+        feed_stub = feed_pb2_grpc.FeedAPIStub(self.__api_helper.grpc_channel)
+        headers = self.__api_helper.make_headers(client_app_id=self.__api_helper.id_helper.agent_registered_id.did)
+        create_req = CreateFeedRequest(headers=headers,
+                                       payload=CreateFeedRequest.Payload(feedId=FeedID(value=feed_name)),
+                                       args=CreateFeedRequest.Arguments(twinId=TwinID(value=did)))
+        return feed_stub.CreateFeed(create_req)
+
+    def sparql(self, query: str, isGlobal: bool = True) -> None:
+        meta_stub = meta_pb2_grpc.MetaAPIStub(self.__api_helper.grpc_channel)
+        headers = self.__api_helper.make_headers(client_app_id=self.__api_helper.id_helper.agent_registered_id.did)
+
+        scope = Scope.GLOBAL if isGlobal else Scope.LOCAL
+        # The Sparql query request
+        request = SparqlQueryRequest(
+            headers=headers,
+            scope=scope,
+            payload=SparqlQueryRequest.Payload(
+                resultContentType=SparqlResultType.SPARQL_JSON,  # Expected content type
+                query=query.encode('utf8')  # Raw request
+            )
+        )
+
+        # Map of responses per sequence number (remove potential duplication) per host
+        chunks_per_host: Dict[str, Dict[int, SparqlQueryResponse]] = {}
+        stream = meta_stub.SparqlQuery(request)
+
+        try:
+            for response in stream:
+                host_id = response.payload.remoteHostId.value or 'localhost'
+                chunks = chunks_per_host.setdefault(host_id, {})
+                chunks[response.payload.seqNum] = response
+        # Exit the loop based on the timeout error (normal case)
+        # Or any other GRPCError (anomaly)
+        except grpc.RpcError as err:
+            if err.code() != grpc.StatusCode.DEADLINE_EXCEEDED:  # pylint: disable=no-member
+                raise err
+            logging.debug("timeout occurred running sparql")
+
+        # The following chunk handling is not optimised on purpose. The optimisation must be done depending on the usage.
+        # Example: aggregation can be handled on receive in a dedicated callback/routine.
+        #          The assembler has to care about the fact the order is not guaranteed,
+        #          there can be duplication and/or partial responses.
+        #          A chunk is complete for a given host if:
+        #               - the chunk flagged has "last" has been received, and
+        #               - there is not missing chunk (seqNum, no order guaranteed)
+        responses = {}
+        for host_id, chunks in chunks_per_host.items():
+            sorted_chunks = sorted(chunks.values(), key=lambda r: r.payload.seqNum)
+            last_chunk = sorted_chunks[-1]
+
+            if not last_chunk.payload.last or len(chunks) != last_chunk.payload.seqNum + 1:
+                print(f'Incomplete response from {host_id} - skip')
+                continue
+
+            resp = ''.join([c.payload.resultChunk.decode() for c in sorted_chunks])
+            responses[host_id] = resp
+
+        return responses

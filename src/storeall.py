@@ -33,6 +33,11 @@ LONDON = GeoCircle(radiusKm=25, location=GeoLocation(lat=51.509865, lon=-0.11809
 logger = logging.getLogger("evdemo")
 
 
+MODELS_MAP = {
+
+}
+
+
 def map_key(key):
     return key
 
@@ -41,19 +46,34 @@ def rand_part(didId):
     return didId[14:].lower()
 
 
-def index_for(twin):
+def property_value_of(twin, key):
     # find the model ID or if not avail return a generic index name for all twins of unknown structure
     try:
-        p1 = rand_part(next(p for p in twin.properties if p.key == "https://data.iotics.com/app#model").uriValue.value)
+        return next(p for p in twin.properties if p.key == key).uriValue.value
+
     except:
         # return twin.id.value
-        p1 = "unk"
-    return p1
+        return None
+
+
+def label_of(twin):
+    return property_value_of(twin, "http://www.w3.org/2000/01/rdf-schema#label")
+
+
+def model_did_of(twin):
+    return property_value_of(twin, "https://data.iotics.com/app#model")
+
+
+def index_for(twin):
+    did = model_did_of(twin)
+    if did is None:
+        return "unk"
+    return rand_part(did)
 
 
 def make_index_name(*args):
     i = '-'.join(args)
-    return f'{i}-{datetime.now().strftime("%y%m%d")}'
+    return f'{i}-{datetime.now().strftime("%y%m%d")}'.lower()
 
 
 def to_value(p):
@@ -94,14 +114,14 @@ def store_search_meta(meta):
     logging.info(meta)
 
 
-def feed_doc(twin, feed):
+def feed_doc(twin, model, feed):
     interest = feed.payload.interest
     msg_feed = interest.followedFeed.feed
     data = json.loads("{}")
     if "json" in feed.payload.feedData.mime:
         data = json.loads(feed.payload.feedData.data)
 
-    doc = twin_doc(twin)
+    doc = twin_doc(twin, model)
     doc['timestamp'] = datetime.now(timezone.utc).isoformat()
     doc['occurredAt'] = feed.payload.feedData.occurredAt.seconds
     doc['mime'] = feed.payload.feedData.mime
@@ -111,24 +131,29 @@ def feed_doc(twin, feed):
     return doc
 
 
-def store_feed(es, twin, sharedData):
+def store_feed(es, twin, model, sharedData):
     interest = sharedData.payload.interest
     msg_feed = interest.followedFeed.feed
     index = make_index_name("feed", index_for(twin), msg_feed.id.value)
     try:
-        resp = es.index(index=index, id=uuid.uuid1(), document=feed_doc(twin, sharedData))
+        doc = feed_doc(twin, model, sharedData)
+        logging.info(f'feed_doc: {doc}')
+        resp = es.index(index=index, id=uuid.uuid1(), document=doc)
         logging.debug(resp['result'])
     except Exception:  # pylint: disable=broad-except
         logging.error(f'could not store feed {traceback.format_exc()}')
 
 
-def twin_doc(twin):
+def twin_doc(twin, model):
+    model_label = label_of(model)
+
     doc = {
         'twinId': twin.id.value,
         'visibility': twin.visibility,
         # geojson format (note lon at 0 and lat at 1)
         'location': {"type": "Point", "coordinates": [twin.location.lon, twin.location.lat]},
         'timestamp': datetime.now(timezone.utc).isoformat(),
+        'model_label': model_label
     }
     for p in twin.properties:
         nk = map_key(p.key)
@@ -145,22 +170,36 @@ def twin_doc(twin):
     return doc
 
 
-def store_twin(es, twin):
+def store_twin(es, twin, model):
     # sort properties by name then hash content for ID - then add timestamp
     twin_index = index_for(twin)
     try:
         index = make_index_name("twin", twin_index)
         create_index(es, index)
-        resp = es.index(index=index, id=rand_part(twin.id.value), document=twin_doc(twin))
+        doc = twin_doc(twin, model)
+        logging.info(f'twin_doc: {doc}')
+        resp = es.index(index=index, id=rand_part(twin.id.value), document=doc)
 
         for feedObj in twin.feeds:
             feed = feedObj.feed
             index = make_index_name("feed", twin_index, feed.id.value)
             create_index(es, index)
 
-        logging.debug(resp['result'])
+        # logging.debug(resp['result'])
     except Exception:  # pylint: disable=broad-except
         logging.error(f'could not store feed {traceback.format_exc()}')
+
+
+def model_twin_of(twin):
+    model_did = model_did_of(twin)
+    if model_did in MODELS_MAP:
+        return MODELS_MAP[model_did]
+    if model_did is None:
+        return None
+    # MUST USE SPARQL
+    desc = api.twin_api.describe_twin(did=model_did)
+    MODELS_MAP[model_did] = desc
+    return desc
 
 
 def find_bind_store(follower_id, es, api, rdfType=None, location=None):
@@ -202,7 +241,8 @@ def find_bind_store(follower_id, es, api, rdfType=None, location=None):
         search_meta["total_twins"] = search_meta["total_twins"] + len(result.payload.twins)
         for twin in twins:
             feeds_len = len(twin.feeds)
-            store_twin(es, twin)
+            model = model_twin_of(twin=twin)
+            store_twin(es, twin, model)
             if feeds_len > 0:
                 logger.info(f'found < {feeds_len} > feeds in {twin.id.value}')
                 max_feeds = max_feeds + feeds_len
@@ -214,6 +254,7 @@ def find_bind_store(follower_id, es, api, rdfType=None, location=None):
                         'follower': follower_id,
                         'twin_id': feed.twinId.value,
                         'twin': twin,
+                        'model_twin': model,
                         'feed_id': feed.id.value,
                         'remote_host_id': host_id,
                     })
@@ -226,13 +267,15 @@ def find_bind_store(follower_id, es, api, rdfType=None, location=None):
             logger.info(
                 f"subscription {sub_feed['feed_n']}/{max_feeds}: {sub_feed['twin_id']}/{sub_feed['feed_id']}")
             twin = sub_feed['twin']
+            model_twin = sub_feed['model_twin']
             s_future = api.interest_api.fetch_interest_callback(sub_feed['follower'],
                                                                 twin_id=sub_feed['twin_id'],
                                                                 remote_host_id=sub_feed['remote_host_id'],
                                                                 feed_id=sub_feed['feed_id'],
                                                                 # need to force capturing of twin object or else the closure
                                                                 # won't capture the current value
-                                                                callback=lambda message, tt=twin: store_feed(es, tt, message))
+                                                                callback=lambda message, mm=model_twin, tt=twin:
+                                                                    store_feed(es=es, twin=tt, model=mm, sharedData=message))
             # time.sleep(0.05)
             stops.append(s_future)
     except KeyboardInterrupt:
