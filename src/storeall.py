@@ -114,14 +114,14 @@ def store_search_meta(meta):
     logging.info(meta)
 
 
-def feed_doc(twin, model, feed):
+def feed_doc(twin, model_label, feed):
     interest = feed.payload.interest
     msg_feed = interest.followedFeed.feed
     data = json.loads("{}")
     if "json" in feed.payload.feedData.mime:
         data = json.loads(feed.payload.feedData.data)
 
-    doc = twin_doc(twin, model)
+    doc = twin_doc(twin, model_label)
     doc['timestamp'] = datetime.now(timezone.utc).isoformat()
     doc['occurredAt'] = feed.payload.feedData.occurredAt.seconds
     doc['mime'] = feed.payload.feedData.mime
@@ -131,12 +131,12 @@ def feed_doc(twin, model, feed):
     return doc
 
 
-def store_feed(es, twin, model, sharedData):
+def store_feed(es, twin, model_label, sharedData):
     interest = sharedData.payload.interest
     msg_feed = interest.followedFeed.feed
     index = make_index_name("feed", index_for(twin), msg_feed.id.value)
     try:
-        doc = feed_doc(twin, model, sharedData)
+        doc = feed_doc(twin, model_label, sharedData)
         logging.info(f'feed_doc: {doc}')
         resp = es.index(index=index, id=uuid.uuid1(), document=doc)
         logging.debug(resp['result'])
@@ -144,9 +144,7 @@ def store_feed(es, twin, model, sharedData):
         logging.error(f'could not store feed {traceback.format_exc()}')
 
 
-def twin_doc(twin, model):
-    model_label = label_of(model)
-
+def twin_doc(twin, model_label):
     doc = {
         'twinId': twin.id.value,
         'visibility': twin.visibility,
@@ -170,13 +168,13 @@ def twin_doc(twin, model):
     return doc
 
 
-def store_twin(es, twin, model):
+def store_twin(es, twin, model_label):
     # sort properties by name then hash content for ID - then add timestamp
     twin_index = index_for(twin)
     try:
         index = make_index_name("twin", twin_index)
         create_index(es, index)
-        doc = twin_doc(twin, model)
+        doc = twin_doc(twin, model_label)
         logging.info(f'twin_doc: {doc}')
         resp = es.index(index=index, id=rand_part(twin.id.value), document=doc)
 
@@ -189,33 +187,48 @@ def store_twin(es, twin, model):
     except Exception:  # pylint: disable=broad-except
         logging.error(f'could not store feed {traceback.format_exc()}')
 
+def load_models():
+    query = '''
+    PREFIX iotics_app: <https://data.iotics.com/app#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT ?id ?label WHERE {
+        ?id a iotics_app:Model .
+        ?id rdfs:label ?label
+    }'''
 
-def model_twin_of(twin):
+    response = api.meta_api.sparql(query=query)
+    for host_id in response:
+        payload=response[host_id]
+        for b in payload['results']['bindings']:
+            id = b['id']['value']
+            label = b['label']['value']
+            MODELS_MAP[id] = label
+
+def model_label_of(twin):
     try:
         model_did = model_did_of(twin)
         if model_did in MODELS_MAP:
             return MODELS_MAP[model_did]
-        if model_did is None:
-            return None
-        # MUST USE SPARQL
-        desc = api.twin_api.describe_twin(did=model_did)
-        MODELS_MAP[model_did] = desc
-        return desc
     except:
-        return None
+        pass
+    return None
 
-def find_bind_store(follower_id, es, api, rdfType=None, location=None):
+def find_bind_store(follower_id, es, api, rdfType=None, ioticsModel=None, location=None):
     logger.info(f'Searching for Twins of type {rdfType}')
 
     payload = SearchPayloadBuilder()
     search_meta = {}
 
-    properties_filter = None
+    properties_filter = []
     if rdfType is not None:
-        properties_filter = []  # exact match
         properties_filter.append(api.make_property_uri(f'{ON_RDF}#type', rdfType))
-        payload.properties = properties_filter
         search_meta["rdf_type"] = rdfType
+    if ioticsModel is not None:
+        properties_filter.append(api.make_property_uri(f'https://data.iotics.com/app#model', ioticsModel))
+        search_meta["model"] = ioticsModel
+    if len(properties_filter) > 0:
+        payload.properties = properties_filter
+
     if location is not None:
         payload.location = location
         search_meta["location"] = {"type": "Point", "coordinates": [location.location.lon, location.location.lat]}
@@ -223,7 +236,8 @@ def find_bind_store(follower_id, es, api, rdfType=None, location=None):
 
     payload.response_type = ResponseType.FULL
 
-    result_stream = api.search_api.dispatch_search_request(payload.build(),
+    request = payload.build()
+    result_stream = api.search_api.dispatch_search_request(request,
                                                            client_ref=ApiHelper.randClientRef(),
                                                            scope=Scope.GLOBAL,
                                                            timeout=5)
@@ -243,8 +257,9 @@ def find_bind_store(follower_id, es, api, rdfType=None, location=None):
         search_meta["total_twins"] = search_meta["total_twins"] + len(result.payload.twins)
         for twin in twins:
             feeds_len = len(twin.feeds)
-            model = model_twin_of(twin=twin)
-            store_twin(es, twin, model)
+            model_label = model_label_of(twin=twin)
+            store_twin(es, twin, model_label)
+
             if feeds_len > 0:
                 logger.info(f'found < {feeds_len} > feeds in {twin.id.value}')
                 max_feeds = max_feeds + feeds_len
@@ -256,7 +271,7 @@ def find_bind_store(follower_id, es, api, rdfType=None, location=None):
                         'follower': follower_id,
                         'twin_id': feed.twinId.value,
                         'twin': twin,
-                        'model_twin': model,
+                        'model_label': model_label,
                         'feed_id': feed.id.value,
                         'remote_host_id': host_id,
                     })
@@ -269,15 +284,18 @@ def find_bind_store(follower_id, es, api, rdfType=None, location=None):
             logger.info(
                 f"subscription {sub_feed['feed_n']}/{max_feeds}: {sub_feed['twin_id']}/{sub_feed['feed_id']}")
             twin = sub_feed['twin']
-            model_twin = sub_feed['model_twin']
+            model_label = sub_feed['model_label']
             s_future = api.interest_api.fetch_interest_callback(sub_feed['follower'],
                                                                 twin_id=sub_feed['twin_id'],
                                                                 remote_host_id=sub_feed['remote_host_id'],
                                                                 feed_id=sub_feed['feed_id'],
                                                                 # need to force capturing of twin object or else the closure
                                                                 # won't capture the current value
-                                                                callback=lambda message, mm=model_twin, tt=twin:
-                                                                    store_feed(es=es, twin=tt, model=mm, sharedData=message))
+                                                                callback=lambda message, ml=model_label, tt=twin:
+                                                                    store_feed(
+                                                                        es=es, twin=tt, model_label=ml, sharedData=message
+                                                                    )
+                                                                )
             # time.sleep(0.05)
             stops.append(s_future)
     except KeyboardInterrupt:
@@ -329,10 +347,10 @@ if __name__ == '__main__':
 
     executor = ThreadPoolExecutor(os.cpu_count() * 4)
 
-    executor.submit(find_bind_store(location=LONDON,
-                                    follower_id=follower_twin_id,
-                                    es=es,
-                                    api=api))
+    # executor.submit(find_bind_store(location=LONDON,
+    #                                 follower_id=follower_twin_id,
+    #                                 es=es,
+    #                                 api=api))
 
     # executor.submit(find_bind_store(rdfType=f'{ON_EL}#ChargingStation',
     #                                 follower_twin_id=follower_twin_id,
@@ -343,3 +361,45 @@ if __name__ == '__main__':
     #                                 follower_twin_id=follower_twin_id,
     #                                 es=es,
     #                                 api=api))
+
+    ## london buses
+    # executor.submit(find_bind_store(ioticsModel=f'did:iotics:iot9uyhTtK5R3imardFgj2HW684vrSdgFZwb',
+    #                                 follower_twin_id=follower_twin_id,
+    #                                 es=es,
+    #                                 api=api))
+    # executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotX3p2m5J4R1NK3FYsoJ687NhsB7hbtFbio',
+    #                                 follower_twin_id=follower_twin_id,
+    #                                 es=es,
+    #                                 api=api))
+    # executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotUQDmmfJe6iSy6mVMXLumodeuVoqE7HQY9',
+    #                                 follower_twin_id=follower_twin_id,
+    #                                 es=es,
+    #                                 api=api))
+    # executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotVaxnGGHryhQ2k7xwddoqYcKLA8ktBWHQg',
+    #                                 follower_twin_id=follower_twin_id,
+    #                                 es=es,
+    #                                 api=api))
+
+    # vessels
+    executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotAGq33aYjExKNnnajfticKV1eyv8c37niW',
+                                    follower_id=follower_twin_id,
+                                    es=es,
+                                    api=api))
+    # Hydrogen Tank Model
+    executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotHhib6Bb49kttpPyL8PRRs5fjKS6N6b4Sb',
+                                    follower_id=follower_twin_id,
+                                    es=es,
+                                    api=api))
+
+    # PorticoMeteoHelixSensor
+    executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotWxa9oGf792MdfS8ZwFoafSG6D1LanA8wH',
+                                    follower_id=follower_twin_id,
+                                    es=es,
+                                    api=api))
+    # PorticoAirQualitySensorA
+    executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotNRisUqWL8yLdzskmHJ2vNRdZkgUitgcnD',
+                                    follower_id=follower_twin_id,
+                                    es=es,
+                                    api=api))
+
+

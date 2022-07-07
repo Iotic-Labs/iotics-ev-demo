@@ -1,5 +1,6 @@
 import logging
 import random
+import json
 import time
 
 from threading import Thread
@@ -584,7 +585,7 @@ class MetaApi:
                 print(f'Incomplete response from {host_id} - skip')
                 continue
 
-            resp = ''.join([c.payload.resultChunk.decode() for c in sorted_chunks])
+            resp = json.loads(''.join([c.payload.resultChunk.decode() for c in sorted_chunks]))
             responses[host_id] = resp
 
         return responses

@@ -42,14 +42,20 @@ if __name__ == '__main__':
         ?s a iotics_app:Model
     }'''
 
+    query = '''
+    PREFIX iotics_app: <https://data.iotics.com/app#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT ?id ?label WHERE {
+        ?id a iotics_app:Model .
+        ?id rdfs:label ?label
+    }'''
+
     response = my_api.meta_api.sparql(query=query)
 
-    for host in response:
-        # print(f'host: {host} / response[host]: {response[host]}')
-        print(f'host: {host}')
-        host_dict = json.loads(response[host])
-        for binding in host_dict["results"]["bindings"]:
-            for var in binding:
-                print(f'var: {var}, value: {binding[var]["value"]}')  
-
-    print(response)
+    for host_id in response:
+        payload=response[host_id]
+        for b in payload['results']['bindings']:
+            id = b['id']['value']
+            label = b['label']['value']
+            print(f'{host_id} -- {id}: {label}')
+    # pp(response)
