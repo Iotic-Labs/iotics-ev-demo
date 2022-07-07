@@ -347,6 +347,8 @@ if __name__ == '__main__':
 
     executor = ThreadPoolExecutor(os.cpu_count() * 4)
 
+    load_models()
+
     # executor.submit(find_bind_store(location=LONDON,
     #                                 follower_id=follower_twin_id,
     #                                 es=es,
@@ -385,21 +387,21 @@ if __name__ == '__main__':
                                     follower_id=follower_twin_id,
                                     es=es,
                                     api=api))
-    # Hydrogen Tank Model
-    executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotHhib6Bb49kttpPyL8PRRs5fjKS6N6b4Sb',
-                                    follower_id=follower_twin_id,
-                                    es=es,
-                                    api=api))
+    # # Hydrogen Tank Model
+    # executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotHhib6Bb49kttpPyL8PRRs5fjKS6N6b4Sb',
+    #                                 follower_id=follower_twin_id,
+    #                                 es=es,
+    #                                 api=api))
 
-    # PorticoMeteoHelixSensor
-    executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotWxa9oGf792MdfS8ZwFoafSG6D1LanA8wH',
-                                    follower_id=follower_twin_id,
-                                    es=es,
-                                    api=api))
-    # PorticoAirQualitySensorA
-    executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotNRisUqWL8yLdzskmHJ2vNRdZkgUitgcnD',
-                                    follower_id=follower_twin_id,
-                                    es=es,
-                                    api=api))
+    # # PorticoMeteoHelixSensor
+    # executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotWxa9oGf792MdfS8ZwFoafSG6D1LanA8wH',
+    #                                 follower_id=follower_twin_id,
+    #                                 es=es,
+    #                                 api=api))
+    # # PorticoAirQualitySensorA
+    # executor.submit(find_bind_store(ioticsModel=f'did:iotics:iotNRisUqWL8yLdzskmHJ2vNRdZkgUitgcnD',
+    #                                 follower_id=follower_twin_id,
+    #                                 es=es,
+    #                                 api=api))
 
 
