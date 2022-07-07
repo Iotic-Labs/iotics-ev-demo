@@ -1,3 +1,4 @@
+import json
 import logging
 import sys
 
@@ -36,11 +37,19 @@ if __name__ == '__main__':
     my_api = ApiHelper(id_helper)
 
     query = '''
-    PREFIX iotics_app: <https://data.iotics.com/app#Model>
+    PREFIX iotics_app: <https://data.iotics.com/app#>
     SELECT ?s WHERE {
         ?s a iotics_app:Model
     }'''
 
     response = my_api.meta_api.sparql(query=query)
+
+    for host in response:
+        # print(f'host: {host} / response[host]: {response[host]}')
+        print(f'host: {host}')
+        host_dict = json.loads(response[host])
+        for binding in host_dict["results"]["bindings"]:
+            for var in binding:
+                print(f'var: {var}, value: {binding[var]["value"]}')  
 
     print(response)
