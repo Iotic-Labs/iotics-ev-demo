@@ -191,16 +191,18 @@ def store_twin(es, twin, model):
 
 
 def model_twin_of(twin):
-    model_did = model_did_of(twin)
-    if model_did in MODELS_MAP:
-        return MODELS_MAP[model_did]
-    if model_did is None:
+    try:
+        model_did = model_did_of(twin)
+        if model_did in MODELS_MAP:
+            return MODELS_MAP[model_did]
+        if model_did is None:
+            return None
+        # MUST USE SPARQL
+        desc = api.twin_api.describe_twin(did=model_did)
+        MODELS_MAP[model_did] = desc
+        return desc
+    except:
         return None
-    # MUST USE SPARQL
-    desc = api.twin_api.describe_twin(did=model_did)
-    MODELS_MAP[model_did] = desc
-    return desc
-
 
 def find_bind_store(follower_id, es, api, rdfType=None, location=None):
     logger.info(f'Searching for Twins of type {rdfType}')
