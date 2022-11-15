@@ -40,6 +40,10 @@ def usage(m):
     print("        env:IOTICS_HOST_PORT")
     print("        host:port of the Iotic space api endpoint")
     print()
+    print("     -r|--resolver-api-endpoint=<https>")
+    print("        env:RESOLVER_API_ENDPOINT")
+    print("        https endpoint of the resolver API - must match with the configured resolver of the host")
+    print()
 
 
 class Conf:
@@ -47,7 +51,7 @@ class Conf:
         self.agent_seed_file = os.getenv("AGENT_SEED_FILE", "~/.config/.tutorial-ev-chargers.seed")
         self.user_seed_file = os.getenv("USER_SEED_FILE", "~/.iotics-user-seed")
         self.api_endpoint = os.getenv("IOTICS_HOST_PORT")
-        self.resolver = None
+        self.resolver = os.getenv("RESOLVER_API_ENDPOINT")
         self.agent_name = os.getenv("IOTICS_AGENT_NAME", "#demo-agent")
         self.user_name = os.getenv("IOTICS_USER_NAME", "#demo-user")
         self.agent_key_name = os.getenv("IOTICS_AK_NAME", "demo-agent")
@@ -71,7 +75,7 @@ class Conf:
 
         opts = []
         try:
-            opts, _ = getopt.getopt(args, "hDu:K:a:n:m:k:e:", [
+            opts, _ = getopt.getopt(args, "hDu:K:a:n:m:k:e:r:", [
                 "help",
                 "show-did",
                 "user-seed-file=",
@@ -81,6 +85,7 @@ class Conf:
                 "user-name=",
                 "agent-key-name=",
                 "api-endpoint=",
+                "resolver-api-endpoint=",
             ])
             opt_ok = True
         except getopt.GetoptError as e:
@@ -106,6 +111,8 @@ class Conf:
                     self.user_name = arg
                 elif opt in ("-e", "--api-endpoint"):
                     self.api_endpoint = arg
+                elif opt in ("-r", "--resolver-api-endpoint"):
+                    self.resolver = arg
                 elif opt in ("-D", "--show-did"):
                     self.show_did_on_usage = True
 

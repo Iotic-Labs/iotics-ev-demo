@@ -20,6 +20,7 @@ if __name__ == '__main__':
 
     # make Identity helper
     id_helper = IdHelper(my_conf.api_endpoint,
+                         resolver_url=my_conf.resolver_api(),
                          user_seed=my_conf.user_seed(),
                          user_key_name=my_conf.user_key_name,
                          user_name=my_conf.user_name,

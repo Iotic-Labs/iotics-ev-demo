@@ -328,6 +328,7 @@ if __name__ == '__main__':
 
     # make auth facade
     id_helper = IdHelper(conf.api_endpoint,
+                         resolver_url=conf.resolver_api(),
                          user_seed=conf.user_seed(),
                          user_key_name=conf.user_key_name,
                          user_name=conf.user_name,

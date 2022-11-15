@@ -16,6 +16,7 @@ class IdHelper():
     def __init__(self,
                  spacename: str,
                  jwt_duration: int,
+                 resolver_url: str = None,
                  user_seed: str = None,
                  user_key_name: str = None,
                  user_name: str = None,
@@ -39,9 +40,11 @@ class IdHelper():
         self.__jwt_token = None
 
         self.__space_dns = spacename
-        self.__index_url = f"https://{self.space_dns}/index.json"
-        self.__index_json = requests.get(self.__index_url).json()
-        self.__resolver_url = self.__index_json["resolver"]
+        self.__resolver_url = resolver_url
+        if self.__resolver_url is None:
+            self.__index_url = f"https://{self.space_dns}/index.json"
+            self.__index_json = requests.get(self.__index_url).json()
+            self.__resolver_url = self.__index_json["resolver"]
         self.__id_api = get_rest_high_level_identity_api(resolver_url=self.__resolver_url)
 
         self.__user_registered_id, self.__agent_registered_id = \
